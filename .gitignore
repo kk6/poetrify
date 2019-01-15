@@ -203,3 +203,4 @@ pip-selfcheck.json
 !.vscode/launch.json
 !.vscode/extensions.json
 
+Pipfile
