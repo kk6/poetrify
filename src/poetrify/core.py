@@ -26,8 +26,11 @@ def generate_init_cmd():
     try:
         license_name = licensename.from_file("LICENSE")
     except FileNotFoundError:
-        pass
+        license_name = ""
     else:
+        if license_name is None:
+            license_name = ""
+    if license_name:
         cmd.append(f"--license={license_name}")
 
     return " ".join(cmd)
