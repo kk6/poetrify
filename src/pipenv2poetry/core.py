@@ -1,4 +1,5 @@
 import tomlkit
+import licensename
 
 
 def generate_init_cmd():
@@ -21,5 +22,12 @@ def generate_init_cmd():
 
     for package in dev_packages:
         cmd.append(f"--dev-dependency={package}")
+
+    try:
+        license_name = licensename.from_file("LICENSE")
+    except FileNotFoundError:
+        pass
+    else:
+        cmd.append(f"--license={license_name}")
 
     return " ".join(cmd)

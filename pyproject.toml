@@ -20,6 +20,7 @@ classifiers = [
 python = "^3.7"
 tomlkit = "^0.5.3"
 cleo = "^0.7.2"
+licensename = "^0.4.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
