@@ -9,7 +9,7 @@ from cleo import Application
 from . import __version__
 from .core import generate_init_cmd
 
-application = Application("pipenv2poetry", __version__, complete=True)
+application = Application("poetrify", __version__, complete=True)
 
 
 class GenerateCommand(Command):

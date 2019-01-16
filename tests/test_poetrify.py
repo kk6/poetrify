@@ -1,4 +1,4 @@
-from pipenv2poetry import __version__
+from poetrify import __version__
 from cleo import Application, CommandTester
 
 
@@ -7,7 +7,7 @@ def test_version():
 
 
 def test_foo():
-    from pipenv2poetry.cli import GenerateCommand
+    from poetrify.cli import GenerateCommand
     application = Application()
     application.add(GenerateCommand())
     command = application.find("generate")

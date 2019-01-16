@@ -1,10 +1,12 @@
-# pipenv2poetry
+# Poetrify
+
+Pipfile to pyproject.toml for Poetry.
 
 ```
 $ git clone https://github.com/kk6/pipenv2poetry.git
 $ cd pipenv2poetry
 $ poetry install
-$ poetry run pipenv2poetry generate -w /path/to/workspace
+$ poetry run poetrify generate -w /path/to/workspace
 ```
 
 or
@@ -15,7 +17,7 @@ $ cd pipenv2poetry
 $ poetry build
 $ pip install --user ./dist/pipenv2poetry-0.1.0-py3-none-any.whl
 $ cd path/to/workspace
-$ pipenv2poetry generate
+$ poetrify generate
 ```
 
 ## required

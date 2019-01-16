@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "pipenv2poetry"
+name = "poetrify"
 version = "0.2.0"
-description = "Pipfile to Poetry"
+description = "Pipfile to pyproject.toml for Poetry"
 readme = "README.md"
 authors = ["kk6 <hiro.ashiya@gmail.com>"]
 license = "MIT"
@@ -26,7 +26,7 @@ licensename = "^0.4.2"
 pytest = "^3.0"
 
 [tool.poetry.scripts]
-pipenv2poetry = "pipenv2poetry.cli:application.run"
+poetrify = "poetrify.cli:application.run"
 
 [build-system]
 requires = ["poetry>=0.12"]
