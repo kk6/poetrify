@@ -202,3 +202,5 @@ pip-selfcheck.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+tests/repos/**/pyproject.toml

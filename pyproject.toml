@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pipenv2poetry"
-version = "0.1.0"
+version = "0.2.0"
 description = "Pipfile to Poetry"
 readme = "README.md"
 authors = ["kk6 <hiro.ashiya@gmail.com>"]

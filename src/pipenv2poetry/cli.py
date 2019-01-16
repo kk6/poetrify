@@ -23,9 +23,12 @@ class GenerateCommand(Command):
     """
 
     def handle(self):
-        workspace = self.option("workspace")
-        if workspace:
-            os.chdir(Path(workspace))
+        _workspace = self.option("workspace")
+        if _workspace:
+            workspace = Path(_workspace)
+            os.chdir(workspace)
+        else:
+            workspace = Path(".")
 
         try:
             cmd = generate_init_cmd()
@@ -38,8 +41,22 @@ class GenerateCommand(Command):
         self.line("")
 
         if not self.option("dry-run"):
-            self.info("Execute the above command. Also, the following output is due to Poetry.")
-            subprocess.run(cmd, shell=True)
+            self.info(
+                "Execute the above command. Also, the following output is due to Poetry."
+            )
+            r = subprocess.run(cmd, shell=True)
+            pyproject_toml = workspace / "pyproject.toml"
+            if not r.returncode and pyproject_toml.exists():
+                pipfile = workspace / "Pipfile"
+                pipfile_lock = workspace / "Pipfile.lock"
+                if pipfile.exists():
+                    if self.confirm("Do you wanna delete Pipfile?", False):
+                        os.remove(pipfile)
+                        self.info("Pipfile deleted!")
+                if pipfile_lock.exists():
+                    if self.confirm("Do you wanna delete Pipfile.lock, too?", False):
+                        os.remove(pipfile_lock)
+                        self.info("Pipfile.lock deleted!")
 
 
 application.add(GenerateCommand())
