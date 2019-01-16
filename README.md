@@ -15,7 +15,7 @@ or
 $ git clone https://github.com/kk6/poetrify.git
 $ cd poetrify
 $ poetry build
-$ pip install --user ./dist/poetrify-0.2.0-py3-none-any.whl
+$ pip install --user ./dist/poetrify-0.2.1-py3-none-any.whl
 $ cd path/to/workspace
 $ poetrify generate
 ```
