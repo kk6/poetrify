@@ -29,7 +29,8 @@ class GenerateCommand(Command):
 
         try:
             cmd = generate_init_cmd()
-        except FileNotFoundError:
+        except FileNotFoundError as e:
+            self.line_error(f"<error>{e}</error>")
             return self.line_error("<error>[ERROR] Pipfile not found.</error>")
 
         self.info("Generated init command:")
