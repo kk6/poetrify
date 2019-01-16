@@ -3,8 +3,8 @@
 Pipfile to pyproject.toml for Poetry.
 
 ```
-$ git clone https://github.com/kk6/pipenv2poetry.git
-$ cd pipenv2poetry
+$ git clone https://github.com/kk6/poetrify.git
+$ cd poetrify
 $ poetry install
 $ poetry run poetrify generate -w /path/to/workspace
 ```
@@ -12,10 +12,10 @@ $ poetry run poetrify generate -w /path/to/workspace
 or
 
 ```
-$ git clone https://github.com/kk6/pipenv2poetry.git
-$ cd pipenv2poetry
+$ git clone https://github.com/kk6/poetrify.git
+$ cd poetrify
 $ poetry build
-$ pip install --user ./dist/pipenv2poetry-0.1.0-py3-none-any.whl
+$ pip install --user ./dist/poetrify-0.2.0-py3-none-any.whl
 $ cd path/to/workspace
 $ poetrify generate
 ```
