@@ -19,7 +19,7 @@ $ pip install poetrify
 ## Usage
 
 ```
-$ poetry run poetrify
+$ poetrify
 Poetrify version 0.2.1
 
 USAGE
