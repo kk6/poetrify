@@ -1,4 +1,5 @@
 import os
+import textwrap
 
 import pytest
 
@@ -20,7 +21,13 @@ def test_foo(command_tester_factory):
     print(os.getcwd())
     command_tester = command_tester_factory("generate")
     command_tester.execute("-w repos/foo")
-    assert (
-        "poetry init --dependency=scrapy --dependency=beautifulsoup4 --license=MIT"
-        in command_tester.io.fetch_output()
+    msg = textwrap.dedent(
+        """\
+        Generated init command:
+
+        poetry init --dependency=scrapy --dependency=beautifulsoup4 --license=MIT
+
+        Execute the above command. Also, the following output is due to Poetry.
+        """
     )
+    assert msg in command_tester.io.fetch_output()

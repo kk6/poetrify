@@ -8,7 +8,7 @@
 
 Pipfile to pyproject.toml for Poetry.
 
-```
+```bash
 $ pip install poetrify
 ```
 
@@ -18,7 +18,7 @@ $ pip install poetrify
 
 ## Usage
 
-```
+```bash
 $ poetrify
 Poetrify version 0.2.1
 
@@ -46,7 +46,7 @@ AVAILABLE COMMANDS
 ```
 
 Example structure::
-```
+```bash
 $ tree .
 .
 ├── app.py
@@ -57,7 +57,7 @@ $ tree .
 
 The `generate` command sets the way for `poetry init`
 
-```
+```bash
 $ poetrify generate
 Generated init command:
 
