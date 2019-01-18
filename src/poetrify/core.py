@@ -1,5 +1,5 @@
-import tomlkit
 import licensename
+import tomlkit
 
 
 def generate_init_cmd():

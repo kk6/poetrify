@@ -1,4 +1,5 @@
 import os
+
 import pytest
 
 
@@ -11,8 +12,7 @@ def test_foo_dry_run(command_tester_factory):
     assert pytest_wrapped_exit.value.code == os.EX_OK
     assert (
         "poetry init --dependency=scrapy --dependency=beautifulsoup4 --license=MIT"
-        in
-        command_tester.io.fetch_output()
+        in command_tester.io.fetch_output()
     )
 
 
@@ -22,6 +22,5 @@ def test_foo(command_tester_factory):
     command_tester.execute("-w repos/foo")
     assert (
         "poetry init --dependency=scrapy --dependency=beautifulsoup4 --license=MIT"
-        in
-        command_tester.io.fetch_output()
+        in command_tester.io.fetch_output()
     )

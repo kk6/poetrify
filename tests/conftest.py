@@ -2,12 +2,12 @@ import os
 from pathlib import Path
 
 import pytest
-from cleo import Application, CommandTester
-
+from cleo import Application
+from cleo import CommandTester
 from poetrify.cli import GenerateCommand
 
 
-@pytest.fixture(scope='function', autouse=True)
+@pytest.fixture(scope="function", autouse=True)
 def setup_repos(request):
     """Reset current working directory and remove pyproject.toml"""
     starting_directory = Path.cwd()
@@ -37,4 +37,5 @@ def command_tester_factory():
         command = application.find(name)
         command_tester = CommandTester(command)
         return command_tester
+
     return get_command_tester

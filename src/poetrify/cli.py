@@ -5,8 +5,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-from cleo import Command
 from cleo import Application
+from cleo import Command
 
 from . import __version__
 from .core import generate_init_cmd
