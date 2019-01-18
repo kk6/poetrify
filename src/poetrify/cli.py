@@ -1,6 +1,8 @@
 #!/usr/bin/env python
+import errno
 import os
 import subprocess
+import sys
 from pathlib import Path
 
 from cleo import Command
@@ -30,33 +32,37 @@ class GenerateCommand(Command):
         else:
             workspace = Path(".")
 
-        try:
-            cmd = generate_init_cmd()
-        except FileNotFoundError as e:
-            self.line_error(f"<error>{e}</error>")
-            return self.line_error("<error>[ERROR] Pipfile not found.</error>")
+        cmd = generate_init_cmd()
+        if not cmd:
+            self.line_error("[ERROR] Pipfile not found.", style="error")
+            sys.exit(errno.ENOENT)
 
         self.info("Generated init command:")
         self.line(f"\n{cmd}\n")
         self.line("")
 
-        if not self.option("dry-run"):
-            self.info(
-                "Execute the above command. Also, the following output is due to Poetry."
-            )
-            r = subprocess.run(cmd, shell=True)
-            pyproject_toml = workspace / "pyproject.toml"
-            if not r.returncode and pyproject_toml.exists():
-                pipfile = workspace / "Pipfile"
-                pipfile_lock = workspace / "Pipfile.lock"
-                if pipfile.exists():
-                    if self.confirm("Do you wanna delete Pipfile?", False):
-                        os.remove(pipfile)
-                        self.info("Pipfile deleted!")
-                if pipfile_lock.exists():
-                    if self.confirm("Do you wanna delete Pipfile.lock, too?", False):
-                        os.remove(pipfile_lock)
-                        self.info("Pipfile.lock deleted!")
+        if self.option("dry-run"):
+            sys.exit(os.EX_OK)
+
+        self.info(
+            "Execute the above command. Also, the following output is due to Poetry."
+        )
+        r = subprocess.run(cmd, shell=True)
+        if r.returncode != os.EX_OK:
+            sys.exit(r.returncode)
+
+        pipfile = workspace / "Pipfile"
+        pipfile_lock = workspace / "Pipfile.lock"
+
+        if pipfile.exists():
+            if self.confirm("Do you wanna delete Pipfile?", False):
+                os.remove(pipfile)
+                self.info("Pipfile deleted!")
+
+        if pipfile_lock.exists():
+            if self.confirm("Do you wanna delete Pipfile.lock?", False):
+                os.remove(pipfile_lock)
+                self.info("Pipfile.lock deleted!")
 
 
 application.add(GenerateCommand())

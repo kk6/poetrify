@@ -9,8 +9,11 @@ def generate_init_cmd():
     :rtype: str
 
     """
-    with open("Pipfile") as f:
-        d = tomlkit.parse(f.read())
+    try:
+        with open("Pipfile") as f:
+            d = tomlkit.parse(f.read())
+    except FileNotFoundError:
+        return
 
     packages = list(d["packages"].keys())
     dev_packages = list(d["dev-packages"].keys())
