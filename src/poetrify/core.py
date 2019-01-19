@@ -1,3 +1,5 @@
+import shlex
+
 import licensename
 import tomlkit
 
@@ -21,10 +23,10 @@ def generate_init_cmd():
     cmd = ["poetry", "init"]
 
     for package in packages:
-        cmd.append(f"--dependency={package}")
+        cmd.append(f"--dependency={shlex.quote(package)}")
 
     for package in dev_packages:
-        cmd.append(f"--dev-dependency={package}")
+        cmd.append(f"--dev-dependency={shlex.quote(package)}")
 
     try:
         license_name = licensename.from_file("LICENSE")

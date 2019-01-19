@@ -4,6 +4,7 @@ version = "0.2.1"
 description = "Pipfile to pyproject.toml for Poetry"
 readme = "README.md"
 authors = ["kk6 <hiro.ashiya@gmail.com>"]
+repository = "https://github.com/kk6/poetrify"
 license = "MIT"
 classifiers = [
     "Environment :: Console",
