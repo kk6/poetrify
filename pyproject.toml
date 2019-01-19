@@ -26,9 +26,18 @@ licensename = "^0.4.2"
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
 pre-commit = "^1.14"
+towncrier = "^18.6"
 
 [tool.poetry.scripts]
 poetrify = "poetrify.cli:application.run"
+
+[tool.towncrier]
+package = "poetrify"
+filename = "CHANGELOG.rst"
+directory = "news/"
+title_format = "{version} ({project_date})"
+template = "news/towncrier_template.rst"
+issue_format = "`#{issue} <https://github.com/kk6/poetrify/issues/{issue}>`_"
 
 [build-system]
 requires = ["poetry>=0.12"]
