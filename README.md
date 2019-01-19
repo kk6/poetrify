@@ -1,5 +1,6 @@
 # Poetrify
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b6382d985bf745958b70832f6b356615)](https://app.codacy.com/app/hiro.ashiya/poetrify?utm_source=github.com&utm_medium=referral&utm_content=kk6/poetrify&utm_campaign=Badge_Grade_Settings)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/kk6/poetrify/master/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/poetrify.svg?style=flat-square)](https://pypi.python.org/pypi/poetrify)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
