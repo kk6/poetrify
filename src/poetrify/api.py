@@ -1,24 +1,29 @@
 import shlex
 
 import licensename
-import tomlkit
+
+from .files import get_requires
+from .files import Pipfile
+from .files import RequirementsTxt
 
 
-def generate_init_cmd():
+def generate_init_cmd(src):
     """
+    Generate command string to pass to poetry
 
+    :param str src: Source file name.
     :return: Generated command for 'poetry init' .
     :rtype: str
 
     """
+    if src == "Pipfile":
+        src = Pipfile(src)
+    else:
+        src = RequirementsTxt(src)
     try:
-        with open("Pipfile") as f:
-            d = tomlkit.parse(f.read())
+        packages, dev_packages = get_requires(src)
     except FileNotFoundError:
         return
-
-    packages = list(d["packages"].keys())
-    dev_packages = list(d["dev-packages"].keys())
 
     cmd = ["poetry", "init"]
 

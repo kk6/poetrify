@@ -5,7 +5,6 @@ import pytest
 
 
 def test_foo_dry_run(command_tester_factory):
-    print(os.getcwd())
     command_tester = command_tester_factory("generate")
     with pytest.raises(SystemExit) as pytest_wrapped_exit:
         command_tester.execute("-d -w repos/foo")
@@ -18,7 +17,6 @@ def test_foo_dry_run(command_tester_factory):
 
 
 def test_foo(command_tester_factory):
-    print(os.getcwd())
     command_tester = command_tester_factory("generate")
     command_tester.execute("-w repos/foo")
     msg = textwrap.dedent(
