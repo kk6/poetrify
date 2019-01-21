@@ -1,6 +1,12 @@
+import pytest
 from poetrify.api import generate_init_cmd
 
 
-def test_it():
-    cmd = generate_init_cmd("Pipfile")
-    assert cmd is None
+def test_pipfile_not_found():
+    with pytest.raises(FileNotFoundError):
+        generate_init_cmd("Pipfile")
+
+
+def test_requirements_not_found():
+    with pytest.raises(FileNotFoundError):
+        generate_init_cmd("requirements.txt")

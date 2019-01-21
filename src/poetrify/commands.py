@@ -20,18 +20,42 @@ class GenerateCommand(Command):
 
     """
 
-    def handle(self):
-        _workspace = self.option("workspace")
+    def _determine_workspace(self, _workspace):
         if _workspace:
             workspace = Path(_workspace)
-            os.chdir(workspace)
         else:
             workspace = Path(".")
+        return workspace
+
+    def _remove_source_files(self, workspace, src):
+        # TODO: To clean up this dirty code
+        source_file = workspace / src
+        if src == "Pipfile":
+            lock_file = workspace / "Pipfile.lock"
+
+            if source_file.exists():
+                if self.confirm("Do you wanna delete Pipfile?", False):
+                    os.remove(source_file)
+                    self.info("Pipfile deleted!")
+
+            if lock_file.exists():
+                if self.confirm("Do you wanna delete Pipfile.lock?", False):
+                    os.remove(lock_file)
+                    self.info("Pipfile.lock deleted!")
+        else:
+            if source_file.exists():
+                if self.confirm("Do you wanna delete requirements.txt?", False):
+                    os.remove(source_file)
+                    self.info("requirements.txt deleted!")
+
+    def handle(self):
+        workspace = self._determine_workspace(self.option("workspace"))
+        os.chdir(workspace)
 
         src = self.option("src")
         cmd = generate_init_cmd(src)
         if not cmd:
-            self.line_error("[ERROR] Pipfile not found.", style="error")
+            self.line_error("[ERROR] Source file not found.", style="error")
             sys.exit(errno.ENOENT)
 
         self.info("Generated init command:")
@@ -48,15 +72,4 @@ class GenerateCommand(Command):
         if r.returncode != os.EX_OK:
             sys.exit(r.returncode)
 
-        pipfile = workspace / "Pipfile"
-        pipfile_lock = workspace / "Pipfile.lock"
-
-        if pipfile.exists():
-            if self.confirm("Do you wanna delete Pipfile?", False):
-                os.remove(pipfile)
-                self.info("Pipfile deleted!")
-
-        if pipfile_lock.exists():
-            if self.confirm("Do you wanna delete Pipfile.lock?", False):
-                os.remove(pipfile_lock)
-                self.info("Pipfile.lock deleted!")
+        self._remove_source_files(workspace, src)
