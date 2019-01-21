@@ -10,12 +10,12 @@
 Pipfile or requirements.txt(this is trial) to pyproject.toml for Poetry.
 
 ```bash
-$ pip install poetrify
+pip install poetrify
 ```
 
 ### required
 
-- `poetry` command (See: https://poetry.eustace.io/docs/#installation )
+`poetry` command (See: <https://poetry.eustace.io/docs/#installatio> )
 
 ## Usage
 
@@ -47,6 +47,7 @@ AVAILABLE COMMANDS
 ```
 
 Example structure::
+
 ```bash
 $ tree .
 .
@@ -76,7 +77,7 @@ Package name [foo]:
 
 Also supported to requirements.txt on a trial basis.
 
-Please specify `requirements.txt` for` --src` option. The default value of this option is Pipfile.
+Please specify `requirements.txt` for`--src` option. The default value of this option is Pipfile.
 
 ```bash
 $ poetry run pip freeze > requirements.txt
@@ -128,7 +129,6 @@ poetry init --dependency=cleo --dependency=licensename --dependency=pre-commit -
 
 As you can see, poetrify extract only descendants packages from all the packages listed in `requirements.txt` and pass only those to poetry. This is to prevent `pyproject.toml` from becoming full of package names.
 
-
 ## Autocompletion
 
 ### Description
@@ -143,7 +143,7 @@ GNU/Linux).
 
 ### BASH
 
-```bash```
+`bash`
 Completion files are commonly stored in `/etc/bash_completion.d/`
 
 Run the command:
@@ -191,5 +191,5 @@ For the new completions to take affect.
 ### CUSTOM LOCATIONS
 
 Alternatively, you could save these files to the place of your choosing, such as a custom directory inside your
-$HOME. Doing so will require you to add the proper directives, such as `source`ing inside your login script. Consult
+\$HOME. Doing so will require you to add the proper directives, such as `source`ing inside your login script. Consult
 your shells documentation for how to add such directives.
