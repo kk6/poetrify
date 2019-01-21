@@ -22,11 +22,13 @@ python = "^3.7"
 tomlkit = "^0.5.3"
 cleo = "^0.7.2"
 licensename = "^0.4.2"
+requests = "^2.21"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
 pre-commit = "^1.14"
 towncrier = "^18.6"
+pytest-cov = "^2.6"
 
 [tool.poetry.scripts]
 poetrify = "poetrify.cli:application.run"

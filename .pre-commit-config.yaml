@@ -19,6 +19,6 @@ repos:
       - id: reorder-python-imports
 
   - repo: https://github.com/ambv/black
-    rev: stable
+    rev: 18.9b0
     hooks:
       - id: black
