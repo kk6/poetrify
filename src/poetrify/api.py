@@ -7,23 +7,20 @@ from .files import Pipfile
 from .files import RequirementsTxt
 
 
-def generate_init_cmd(src):
+def build_poetry_init_command(src):
     """
-    Generate command string to pass to poetry
+    Make a command for `poetry init`
 
-    :param str src: Source file name.
+    :param pathlib.Path src: Source file's Path object.
     :return: Generated command for 'poetry init' .
     :rtype: str
 
     """
-    if src == "Pipfile":
+    if src.name == "Pipfile":
         src = Pipfile(src)
     else:
         src = RequirementsTxt(src)
-    try:
-        packages, dev_packages = get_requires(src)
-    except FileNotFoundError:
-        return
+    packages, dev_packages = get_requires(src)
 
     cmd = ["poetry", "init"]
 

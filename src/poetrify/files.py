@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from dataclasses import field
 from functools import singledispatch
+from pathlib import Path
 
 import requests
 import tomlkit
@@ -8,11 +9,11 @@ import tomlkit
 
 @dataclass
 class Pipfile:
-    src: str
+    path: Path
     body: dict = field(init=False)
 
     def __post_init__(self):
-        with open(self.src) as f:
+        with open(self.path) as f:
             self.body = tomlkit.parse(f.read())
 
     @property
@@ -46,12 +47,12 @@ def find_descendant_packages(package_names):
 
 @dataclass
 class RequirementsTxt:
-    src: str
+    path: Path
     body: list = field(init=False)
     _decent_packages: list = None
 
     def __post_init__(self):
-        with open(self.src) as f:
+        with open(self.path) as f:
             self.body = [l.strip() for l in f.readlines()]
 
     @property

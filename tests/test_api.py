@@ -1,12 +1,14 @@
+from pathlib import Path
+
 import pytest
-from poetrify.api import generate_init_cmd
+from poetrify.api import build_poetry_init_command
 
 
 def test_pipfile_not_found():
     with pytest.raises(FileNotFoundError):
-        generate_init_cmd("Pipfile")
+        build_poetry_init_command(Path(".") / "NotPipfile")
 
 
 def test_requirements_not_found():
     with pytest.raises(FileNotFoundError):
-        generate_init_cmd("requirements.txt")
+        build_poetry_init_command(Path(".") / "not_requirements.txt")

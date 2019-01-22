@@ -6,7 +6,7 @@ from pathlib import Path
 
 from cleo import Command
 
-from .api import generate_init_cmd
+from .api import build_poetry_init_command
 
 
 class GenerateCommand(Command):
@@ -27,39 +27,19 @@ class GenerateCommand(Command):
             workspace = Path(".")
         return workspace
 
-    def _remove_source_files(self, workspace, src):
-        # TODO: To clean up this dirty code
-        source_file = workspace / src
-        if src == "Pipfile":
-            lock_file = workspace / "Pipfile.lock"
-
-            if source_file.exists():
-                if self.confirm("Do you wanna delete Pipfile?", False):
-                    os.remove(source_file)
-                    self.info("Pipfile deleted!")
-
-            if lock_file.exists():
-                if self.confirm("Do you wanna delete Pipfile.lock?", False):
-                    os.remove(lock_file)
-                    self.info("Pipfile.lock deleted!")
-        else:
-            if source_file.exists():
-                if self.confirm("Do you wanna delete requirements.txt?", False):
-                    os.remove(source_file)
-                    self.info("requirements.txt deleted!")
-
     def handle(self):
         workspace = self._determine_workspace(self.option("workspace"))
         os.chdir(workspace)
 
-        src = self.option("src")
-        cmd = generate_init_cmd(src)
-        if not cmd:
+        _src = self.option("src")
+        src = workspace.cwd() / _src
+        poetry_command = build_poetry_init_command(src)
+        if not poetry_command:
             self.line_error("[ERROR] Source file not found.", style="error")
             sys.exit(errno.ENOENT)
 
         self.info("Generated init command:")
-        self.line(f"\n{cmd}\n")
+        self.line(f"\n{poetry_command}\n")
         self.line("")
 
         if self.option("dry-run"):
@@ -68,8 +48,17 @@ class GenerateCommand(Command):
         self.info(
             "Execute the above command. Also, the following output is due to Poetry."
         )
-        r = subprocess.run(cmd, shell=True)
+        r = subprocess.run(poetry_command, shell=True)
         if r.returncode != os.EX_OK:
             sys.exit(r.returncode)
 
-        self._remove_source_files(workspace, src)
+        if src.exists():
+            if self.confirm(f"Do you wanna delete {src.name}?", False):
+                os.remove(src)
+                self.info(f"{src.name} deleted!")
+        if src.name == "Pipfile":
+            lock_file = src.parent / "Pipfile.lock"
+            if lock_file.exists():
+                if self.confirm("Do you wanna delete Pipfile.lock?", False):
+                    os.remove(lock_file)
+                    self.info("Pipfile.lock deleted!")

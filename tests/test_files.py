@@ -14,19 +14,34 @@ def fixture():
 
 
 def test_pipfile(fixture):
+    pipfile = Pipfile(fixture)
+    assert pipfile.path.name == "Pipfile"
+    assert pipfile.packages == ["scrapy", "beautifulsoup4"]
+    assert pipfile.dev_packages == []
+
+
+def test_get_requires_with_pipfile(fixture):
     src = Pipfile(fixture)
     packages, dev_packages = get_requires(src)
     assert packages == ["scrapy", "beautifulsoup4"]
     assert dev_packages == []
 
 
-def test_pipfile_if_not_exists():
+def test_get_requires_with_pipfile_if_not_exists():
     with pytest.raises(FileNotFoundError):
-        Pipfile("foo")
+        Pipfile(Path("./foo"))
+
+
+def test_requires(fixture):
+    requires = RequirementsTxt(fixture.with_name("requirements.txt"))
+    assert requires.path.name == "requirements.txt"
+    assert requires.packages == ["django", "pytest"]
+    with pytest.raises(AttributeError):
+        requires.dev_packages
 
 
 @responses.activate
-def test_requirements(fixture):
+def test_get_requires_with_requirements(fixture):
     for name in ("django", "pytest"):
         with open(fixture.with_name(f"{name}.json")) as f:
             responses.add(
@@ -42,6 +57,6 @@ def test_requirements(fixture):
     assert dev_packages == []
 
 
-def test_requirements_if_not_exists():
+def test_get_requires_with_requirements_if_not_exists():
     with pytest.raises(FileNotFoundError):
-        RequirementsTxt("bar")
+        RequirementsTxt(Path("./bar"))
