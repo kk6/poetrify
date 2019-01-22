@@ -48,17 +48,25 @@ class GenerateCommand(Command):
         self.info(
             "Execute the above command. Also, the following output is due to Poetry."
         )
+
         r = subprocess.run(poetry_command, shell=True)
         if r.returncode != os.EX_OK:
             sys.exit(r.returncode)
 
-        if src.exists():
-            if self.confirm(f"Do you wanna delete {src.name}?", False):
+        if self.confirm(f"Do you wanna delete {src.name}?", False):
+            try:
                 os.remove(src)
                 self.info(f"{src.name} deleted!")
-        if src.name == "Pipfile":
-            lock_file = src.parent / "Pipfile.lock"
-            if lock_file.exists():
-                if self.confirm("Do you wanna delete Pipfile.lock?", False):
-                    os.remove(lock_file)
-                    self.info("Pipfile.lock deleted!")
+            except FileNotFoundError:
+                self.line_error(f"{src.name} is not exists.", style="error")
+
+        if src.name != "Pipfile":
+            sys.exit(os.EX_OK)
+
+        lock_file = src.parent / "Pipfile.lock"
+        if self.confirm("Do you wanna delete Pipfile.lock?", False):
+            try:
+                os.remove(lock_file)
+                self.info("Pipfile.lock deleted!")
+            except FileNotFoundError:
+                self.line_error("Pipfile.lock is not exists.", style="error")

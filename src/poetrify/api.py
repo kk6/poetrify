@@ -31,12 +31,9 @@ def build_poetry_init_command(src):
         cmd.append(f"--dev-dependency={shlex.quote(package)}")
 
     try:
-        license_name = licensename.from_file("LICENSE")
+        license_name = licensename.from_file("LICENSE") or ""
     except FileNotFoundError:
         license_name = ""
-    else:
-        if license_name is None:
-            license_name = ""
     if license_name:
         cmd.append(f"--license={license_name}")
 

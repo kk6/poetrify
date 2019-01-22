@@ -18,13 +18,17 @@ class Pipfile:
 
     @property
     def packages(self):
-        if self.body:
+        try:
             return list(self.body["packages"].keys())
+        except tomlkit.exceptions.NonExistentKey:
+            return
 
     @property
     def dev_packages(self):
-        if self.body:
+        try:
             return list(self.body["dev-packages"].keys())
+        except tomlkit.exceptions.NonExistentKey:
+            return
 
 
 def find_descendant_packages(package_names):
