@@ -1,0 +1,834 @@
+{
+  "info": {
+    "author": "Erik Rose",
+    "author_email": "erikrose@grinchcentral.com",
+    "bugtrack_url": null,
+    "classifiers": [
+      "Development Status :: 5 - Production/Stable",
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: MIT License",
+      "Natural Language :: English",
+      "Programming Language :: Python :: 2",
+      "Programming Language :: Python :: 2.7",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3.4",
+      "Programming Language :: Python :: 3.5",
+      "Programming Language :: Python :: 3.6",
+      "Programming Language :: Python :: 3.7",
+      "Topic :: Software Development :: Libraries"
+    ],
+    "description": "==============\nMore Itertools\n==============\n\n.. image:: https://coveralls.io/repos/github/erikrose/more-itertools/badge.svg?branch=master\n  :target: https://coveralls.io/github/erikrose/more-itertools?branch=master\n\nPython's ``itertools`` library is a gem - you can compose elegant solutions\nfor a variety of problems with the functions it provides. In ``more-itertools``\nwe collect additional building blocks, recipes, and routines for working with\nPython iterables.\n\n----\n\n+------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n| Grouping               | `chunked <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.chunked>`_,                                                                                                                        |\n|                        | `sliced <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.sliced>`_,                                                                                                                          |\n|                        | `distribute <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.distribute>`_,                                                                                                                  |\n|                        | `divide <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.divide>`_,                                                                                                                          |\n|                        | `split_at <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.split_at>`_,                                                                                                                      |\n|                        | `split_before <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.split_before>`_,                                                                                                              |\n|                        | `split_after <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.split_after>`_,                                                                                                                |\n|                        | `bucket <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.bucket>`_,                                                                                                                          |\n|                        | `grouper <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.grouper>`_,                                                                                                                        |\n|                        | `partition <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.partition>`_                                                                                                                     |\n+------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n| Lookahead and lookback | `spy <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.spy>`_,                                                                                                                                |\n|                        | `peekable <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.peekable>`_,                                                                                                                      |\n|                        | `seekable <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.seekable>`_                                                                                                                       |\n+------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n| Windowing              | `windowed <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.windowed>`_,                                                                                                                      |\n|                        | `stagger <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.stagger>`_,                                                                                                                        |\n|                        | `pairwise <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.pairwise>`_                                                                                                                       |\n+------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n| Augmenting             | `count_cycle <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.count_cycle>`_,                                                                                                                |\n|                        | `intersperse <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.intersperse>`_,                                                                                                                |\n|                        | `padded <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.padded>`_,                                                                                                                          |\n|                        | `adjacent <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.adjacent>`_,                                                                                                                      |\n|                        | `groupby_transform <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.groupby_transform>`_,                                                                                                    |\n|                        | `padnone <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.padnone>`_,                                                                                                                        |\n|                        | `ncycles <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.ncycles>`_                                                                                                                         |\n+------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n| Combining              | `collapse <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.collapse>`_,                                                                                                                      |\n|                        | `sort_together <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.sort_together>`_,                                                                                                            |\n|                        | `interleave <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.interleave>`_,                                                                                                                  |\n|                        | `interleave_longest <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.interleave_longest>`_,                                                                                                  |\n|                        | `collate <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.collate>`_,                                                                                                                        |\n|                        | `zip_offset <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.zip_offset>`_,                                                                                                                  |\n|                        | `dotproduct <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.dotproduct>`_,                                                                                                                  |\n|                        | `flatten <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.flatten>`_,                                                                                                                        |\n|                        | `roundrobin <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.roundrobin>`_,                                                                                                                  |\n|                        | `prepend <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.prepend>`_                                                                                                                         |\n+------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n| Summarizing            | `ilen <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.ilen>`_,                                                                                                                              |\n|                        | `first <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.first>`_,                                                                                                                            |\n|                        | `last <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.last>`_,                                                                                                                              |\n|                        | `one <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.one>`_,                                                                                                                                |\n|                        | `unique_to_each <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.unique_to_each>`_,                                                                                                          |\n|                        | `locate <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.locate>`_,                                                                                                                          |\n|                        | `rlocate <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.rlocate>`_,                                                                                                                        |\n|                        | `consecutive_groups <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.consecutive_groups>`_,                                                                                                  |\n|                        | `exactly_n <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.exactly_n>`_,                                                                                                                    |\n|                        | `run_length <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.run_length>`_,                                                                                                                  |\n|                        | `map_reduce <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.map_reduce>`_,                                                                                                                  |\n|                        | `all_equal <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.all_equal>`_,                                                                                                                    |\n|                        | `first_true <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.first_true>`_,                                                                                                                  |\n|                        | `nth <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.nth>`_,                                                                                                                                |\n|                        | `quantify <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.quantify>`_                                                                                                                       |\n+------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n| Selecting              | `islice_extended <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.islice_extended>`_,                                                                                                        |\n|                        | `strip <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.strip>`_,                                                                                                                            |\n|                        | `lstrip <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.lstrip>`_,                                                                                                                          |\n|                        | `rstrip <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.rstrip>`_,                                                                                                                          |\n|                        | `take <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.take>`_,                                                                                                                              |\n|                        | `tail <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.tail>`_,                                                                                                                              |\n|                        | `unique_everseen <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertoo ls.unique_everseen>`_,                                                                                                       |\n|                        | `unique_justseen <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.unique_justseen>`_                                                                                                         |\n+------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n| Combinatorics          | `distinct_permutations <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.distinct_permutations>`_,                                                                                            |\n|                        | `circular_shifts <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.circular_shifts>`_,                                                                                                        |\n|                        | `powerset <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.powerset>`_,                                                                                                                      |\n|                        | `random_product <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.random_product>`_,                                                                                                          |\n|                        | `random_permutation <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.random_permutation>`_,                                                                                                  |\n|                        | `random_combination <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.random_combination>`_,                                                                                                  |\n|                        | `random_combination_with_replacement <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.random_combination_with_replacement>`_,                                                                |\n|                        | `nth_combination <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.nth_combination>`_                                                                                                         |\n+------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n| Wrapping               | `always_iterable <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.always_iterable>`_,                                                                                                        |\n|                        | `consumer <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.consumer>`_,                                                                                                                      |\n|                        | `with_iter <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.with_iter>`_,                                                                                                                    |\n|                        | `iter_except <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.iter_except>`_                                                                                                                 |\n+------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n| Others                 | `replace <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.replace>`_,                                                                                                                        |\n|                        | `numeric_range <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.numeric_range>`_,                                                                                                            |\n|                        | `always_reversible <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.always_reversible>`_,                                                                                                    |\n|                        | `side_effect <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.side_effect>`_,                                                                                                                |\n|                        | `iterate <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.iterate>`_,                                                                                                                        |\n|                        | `difference <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.difference>`_,                                                                                                                  |\n|                        | `make_decorator <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.make_decorator>`_,                                                                                                          |\n|                        | `SequenceView <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.SequenceView>`_,                                                                                                              |\n|                        | `consume <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.consume>`_,                                                                                                                        |\n|                        | `accumulate <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.accumulate>`_,                                                                                                                  |\n|                        | `tabulate <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.tabulate>`_,                                                                                                                      |\n|                        | `repeatfunc <https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.repeatfunc>`_                                                                                                                   |\n+------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n\n\nGetting started\n===============\n\nTo get started, install the library with `pip <https://pip.pypa.io/en/stable/>`_:\n\n.. code-block:: shell\n\n    pip install more-itertools\n\nThe recipes from the `itertools docs <https://docs.python.org/3/library/itertools.html#itertools-recipes>`_\nare included in the top-level package:\n\n.. code-block:: python\n\n    >>> from more_itertools import flatten\n    >>> iterable = [(0, 1), (2, 3)]\n    >>> list(flatten(iterable))\n    [0, 1, 2, 3]\n\nSeveral new recipes are available as well:\n\n.. code-block:: python\n\n    >>> from more_itertools import chunked\n    >>> iterable = [0, 1, 2, 3, 4, 5, 6, 7, 8]\n    >>> list(chunked(iterable, 3))\n    [[0, 1, 2], [3, 4, 5], [6, 7, 8]]\n\n    >>> from more_itertools import spy\n    >>> iterable = (x * x for x in range(1, 6))\n    >>> head, iterable = spy(iterable, n=3)\n    >>> list(head)\n    [1, 4, 9]\n    >>> list(iterable)\n    [1, 4, 9, 16, 25]\n\n\n\nFor the full listing of functions, see the `API documentation <https://more-itertools.readthedocs.io/en/latest/api.html>`_.\n\nDevelopment\n===========\n\n``more-itertools`` is maintained by `@erikrose <https://github.com/erikrose>`_\nand `@bbayles <https://github.com/bbayles>`_, with help from `many others <https://github.com/erikrose/more-itertools/graphs/contributors>`_.\nIf you have a problem or suggestion, please file a bug or pull request in this\nrepository. Thanks for contributing!\n\n\nVersion History\n===============\n\n\n\n5.0.0\n-----\n\n* New itertools:\n    * split_into (thanks to rovyko)\n    * unzip (thanks to bmintz)\n    * substrings (thanks to pylang)\n\n* Changes to existing itertools:\n    * ilen was optimized a bit (thanks to MSeifert04, achampion, and  bmintz)\n    * first_true now returns ``None`` by default. This is the reason for the major version bump - see below. (thanks to sk and OJFord)\n\n* Other changes:\n   * Some code for old Python versions was removed (thanks to hugovk)\n   * Some documentation mistakes were corrected  (thanks to belm0 and hugovk)\n   * Tests now run properly on 32-bit versions of Python (thanks to Millak)\n   * Newer versions of CPython and PyPy are now tested against\n\nThe major version update is due to the change in the default return value of\nfirst_true. It's now ``None``.\n\n.. code-block:: python\n\n    >>> from more_itertools import first_true\n    >>> iterable = [0, '', False, [], ()]  # All these are False\n    >>> answer = first_true(iterable)\n    >>> print(answer)\n    None\n\n4.3.0\n-----\n\n* New itertools:\n    * last (thanks to tmshn)\n    * replace (thanks to pylang)\n    * rlocate (thanks to jferard and pylang)\n\n* Improvements to existing itertools:\n    * locate can now search for multiple items\n\n* Other changes:\n   * The docs now include a nice table of tools (thanks MSeifert04)\n\n4.2.0\n-----\n\n* New itertools:\n    * map_reduce (thanks to pylang)\n    * prepend (from the `Python 3.7 docs <https://docs.python.org/3.7/library/itertools.html#itertools-recipes>`_)\n\n* Improvements to existing itertools:\n    * bucket now complies with PEP 479 (thanks to irmen)\n\n* Other changes:\n   * Python 3.7 is now supported (thanks to irmen)\n   * Python 3.3 is no longer supported\n   * The test suite no longer requires third-party modules to run\n   * The API docs now include links to source code\n\n4.1.0\n-----\n\n* New itertools:\n    * split_at (thanks to michael-celani)\n    * circular_shifts (thanks to hiqua)\n    * make_decorator - see the blog post `Yo, I heard you like decorators <https://sites.google.com/site/bbayles/index/decorator_factory>`_\n      for a tour (thanks to pylang)\n    * always_reversible (thanks to michael-celani)\n    * nth_combination (from the `Python 3.7 docs <https://docs.python.org/3.7/library/itertools.html#itertools-recipes>`_)\n\n* Improvements to existing itertools:\n    * seekable now has an ``elements`` method to return cached items.\n    * The performance tradeoffs between roundrobin and\n      interleave_longest are now documented (thanks michael-celani,\n      pylang, and MSeifert04)\n\n4.0.1\n-----\n\n* No code changes - this release fixes how the docs display on PyPI.\n\n4.0.0\n-----\n\n* New itertools:\n    * consecutive_groups (Based on the example in the `Python 2.4 docs <https://docs.python.org/release/2.4.4/lib/itertools-example.html>`_)\n    * seekable (If you're looking for how to \"reset\" an iterator,\n      you're in luck!)\n    * exactly_n (thanks to michael-celani)\n    * run_length.encode and run_length.decode\n    * difference\n\n* Improvements to existing itertools:\n    * The number of items between filler elements in intersperse can\n      now be specified (thanks to pylang)\n    * distinct_permutations and peekable got some minor\n      adjustments (thanks to MSeifert04)\n    * always_iterable now returns an iterator object. It also now\n      allows different types to be considered iterable (thanks to jaraco)\n    * bucket can now limit the keys it stores in memory\n    * one now allows for custom exceptions (thanks to kalekundert)\n\n* Other changes:\n    * A few typos were fixed (thanks to EdwardBetts)\n    * All tests can now be run with ``python setup.py test``\n\nThe major version update is due to the change in the return value of always_iterable.\nIt now always returns iterator objects:\n\n.. code-block:: python\n\n    >>> from more_itertools import always_iterable\n    # Non-iterable objects are wrapped with iter(tuple(obj))\n    >>> always_iterable(12345)\n    <tuple_iterator object at 0x7fb24c9488d0>\n    >>> list(always_iterable(12345))\n    [12345]\n    # Iterable objects are wrapped with iter()\n    >>> always_iterable([1, 2, 3, 4, 5])\n    <list_iterator object at 0x7fb24c948c50>\n\n3.2.0\n-----\n\n* New itertools:\n    * lstrip, rstrip, and strip\n      (thanks to MSeifert04 and pylang)\n    * islice_extended\n* Improvements to existing itertools:\n    * Some bugs with slicing peekable-wrapped iterables were fixed\n\n3.1.0\n-----\n\n* New itertools:\n    * numeric_range (Thanks to BebeSparkelSparkel and MSeifert04)\n    * count_cycle (Thanks to BebeSparkelSparkel)\n    * locate (Thanks to pylang and MSeifert04)\n* Improvements to existing itertools:\n    * A few itertools are now slightly faster due to some function\n      optimizations. (Thanks to MSeifert04)\n* The docs have been substantially revised with installation notes,\n  categories for library functions, links, and more. (Thanks to pylang)\n\n\n3.0.0\n-----\n\n* Removed itertools:\n    * ``context`` has been removed due to a design flaw - see below for\n      replacement options. (thanks to NeilGirdhar)\n* Improvements to existing itertools:\n    * ``side_effect`` now supports ``before`` and ``after`` keyword\n      arguments. (Thanks to yardsale8)\n* PyPy and PyPy3 are now supported.\n\nThe major version change is due to the removal of the ``context`` function.\nReplace it with standard ``with`` statement context management:\n\n.. code-block:: python\n\n    # Don't use context() anymore\n    file_obj = StringIO()\n    consume(print(x, file=f) for f in context(file_obj) for x in u'123')\n\n    # Use a with statement instead\n    file_obj = StringIO()\n    with file_obj as f:\n        consume(print(x, file=f) for x in u'123')\n\n2.6.0\n-----\n\n* New itertools:\n    * ``adjacent`` and ``groupby_transform`` (Thanks to diazona)\n    * ``always_iterable`` (Thanks to jaraco)\n    * (Removed in 3.0.0) ``context`` (Thanks to yardsale8)\n    * ``divide`` (Thanks to mozbhearsum)\n* Improvements to existing itertools:\n    * ``ilen`` is now slightly faster. (Thanks to wbolster)\n    * ``peekable`` can now prepend items to an iterable. (Thanks to diazona)\n\n2.5.0\n-----\n\n* New itertools:\n    * ``distribute`` (Thanks to mozbhearsum and coady)\n    * ``sort_together`` (Thanks to clintval)\n    * ``stagger`` and ``zip_offset`` (Thanks to joshbode)\n    * ``padded``\n* Improvements to existing itertools:\n    * ``peekable`` now handles negative indexes and slices with negative\n      components properly.\n    * ``intersperse`` is now slightly faster. (Thanks to pylang)\n    * ``windowed`` now accepts a ``step`` keyword argument.\n      (Thanks to pylang)\n* Python 3.6 is now supported.\n\n2.4.1\n-----\n\n* Move docs 100% to readthedocs.io.\n\n2.4\n-----\n\n* New itertools:\n    * ``accumulate``, ``all_equal``, ``first_true``, ``partition``, and\n      ``tail`` from the itertools documentation.\n    * ``bucket`` (Thanks to Rosuav and cvrebert)\n    * ``collapse`` (Thanks to abarnet)\n    * ``interleave`` and ``interleave_longest`` (Thanks to abarnet)\n    * ``side_effect`` (Thanks to nvie)\n    * ``sliced`` (Thanks to j4mie and coady)\n    * ``split_before`` and ``split_after`` (Thanks to astronouth7303)\n    * ``spy`` (Thanks to themiurgo and mathieulongtin)\n* Improvements to existing itertools:\n    * ``chunked`` is now simpler and more friendly to garbage collection.\n      (Contributed by coady, with thanks to piskvorky)\n    * ``collate`` now delegates to ``heapq.merge`` when possible.\n      (Thanks to kmike and julianpistorius)\n    * ``peekable``-wrapped iterables are now indexable and sliceable.\n      Iterating through ``peekable``-wrapped iterables is also faster.\n    * ``one`` and ``unique_to_each`` have been simplified.\n      (Thanks to coady)\n\n\n2.3\n-----\n\n* Added ``one`` from ``jaraco.util.itertools``. (Thanks, jaraco!)\n* Added ``distinct_permutations`` and ``unique_to_each``. (Contributed by\n  bbayles)\n* Added ``windowed``. (Contributed by bbayles, with thanks to buchanae,\n  jaraco, and abarnert)\n* Simplified the implementation of ``chunked``. (Thanks, nvie!)\n* Python 3.5 is now supported. Python 2.6 is no longer supported.\n* Python 3 is now supported directly; there is no 2to3 step.\n\n2.2\n-----\n\n* Added ``iterate`` and ``with_iter``. (Thanks, abarnert!)\n\n2.1\n-----\n\n* Added (tested!) implementations of the recipes from the itertools\n  documentation. (Thanks, Chris Lonnen!)\n* Added ``ilen``. (Thanks for the inspiration, Matt Basta!)\n\n2.0\n-----\n\n* ``chunked`` now returns lists rather than tuples. After all, they're\n  homogeneous. This slightly backward-incompatible change is the reason for\n  the major version bump.\n* Added ``@consumer``.\n* Improved test machinery.\n\n1.1\n-----\n\n* Added ``first`` function.\n* Added Python 3 support.\n* Added a default arg to ``peekable.peek()``.\n* Noted how to easily test whether a peekable iterator is exhausted.\n* Rewrote documentation.\n\n1.0\n-----\n\n* Initial release, with ``collate``, ``peekable``, and ``chunked``. Could\n  really use better docs.\n\n",
+    "description_content_type": "",
+    "docs_url": "https://pythonhosted.org/more-itertools/",
+    "download_url": "",
+    "downloads": { "last_day": -1, "last_month": -1, "last_week": -1 },
+    "home_page": "https://github.com/erikrose/more-itertools",
+    "keywords": "itertools,iterator,iteration,filter,peek,peekable,collate,chunk,chunked",
+    "license": "MIT",
+    "maintainer": "",
+    "maintainer_email": "",
+    "name": "more-itertools",
+    "package_url": "https://pypi.org/project/more-itertools/",
+    "platform": "",
+    "project_url": "https://pypi.org/project/more-itertools/",
+    "project_urls": {
+      "Homepage": "https://github.com/erikrose/more-itertools"
+    },
+    "release_url": "https://pypi.org/project/more-itertools/5.0.0/",
+    "requires_dist": ["six (<2.0.0,>=1.0.0)"],
+    "requires_python": "",
+    "summary": "More routines for operating on iterables, beyond itertools",
+    "version": "5.0.0"
+  },
+  "last_serial": 4638839,
+  "releases": {
+    "1.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "b21850c3cfa7efbb70fd662ab5413bdd",
+          "sha256": "f59af91861a4c3dfed7a276913223fa67f0d9623756e650ca357fe37c494e7eb"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-1.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "b21850c3cfa7efbb70fd662ab5413bdd",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 4306,
+        "upload_time": "2012-04-26T07:26:41",
+        "url": "https://files.pythonhosted.org/packages/5f/0f/d6c99f483702720fce886bd568bbcdb0796e0e45b6ed6d602c546d29a100/more-itertools-1.0.tar.gz"
+      }
+    ],
+    "1.1": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "51a801d198f50392c330ad4a33c1c9f2",
+          "sha256": "8a41d7f47823d2a68aad980723456bb85ab9fbeb4449a52c68899a578e7984a5"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-1.1.tar.gz",
+        "has_sig": false,
+        "md5_digest": "51a801d198f50392c330ad4a33c1c9f2",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 12681,
+        "upload_time": "2012-06-26T22:57:17",
+        "url": "https://files.pythonhosted.org/packages/45/90/e3c033bf5379dda84ac0a5fe1bf6ac350908d81bd49ba24f865179587105/more-itertools-1.1.tar.gz"
+      }
+    ],
+    "2.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "4cab84a678ed2e2b2530f8eb25daeee5",
+          "sha256": "0d45ebf974e0fdbcf3c2bbbcadebf53ee0095dca78f8d8d51a7c142be98523f4"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-2.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "4cab84a678ed2e2b2530f8eb25daeee5",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 13296,
+        "upload_time": "2012-07-26T19:35:17",
+        "url": "https://files.pythonhosted.org/packages/92/f1/598c4e50587a01673718c4c79bef726e73da6f74ee6666c723ecda6cc83c/more-itertools-2.0.tar.gz"
+      }
+    ],
+    "2.1": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "b53a8eaf9f6a415807cdef97da7d59c0",
+          "sha256": "df75243cfad850e8d10bb8238042f618348268b84d04ba9db2cd09ff70dd0dc2"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-2.1.tar.gz",
+        "has_sig": false,
+        "md5_digest": "b53a8eaf9f6a415807cdef97da7d59c0",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 19610,
+        "upload_time": "2012-09-24T18:18:51",
+        "url": "https://files.pythonhosted.org/packages/99/a1/479e323e3704f0e4c117f6e4bb0c38d2bff41ef758f3f70f036bae7c1768/more-itertools-2.1.tar.gz"
+      }
+    ],
+    "2.2": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "b8d328a33f966bf40bb829bcf8da35ce",
+          "sha256": "93e62e05c7ad3da1a233def6731e8285156701e3419a5fe279017c429ec67ce0"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-2.2.tar.gz",
+        "has_sig": false,
+        "md5_digest": "b8d328a33f966bf40bb829bcf8da35ce",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 19807,
+        "upload_time": "2013-03-09T03:19:18",
+        "url": "https://files.pythonhosted.org/packages/3d/4d/5900efaab46680e3c6c7a2fd87e4531f87e101ec35f6941621dc7f097e82/more-itertools-2.2.tar.gz"
+      }
+    ],
+    "2.3": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "b59419aba22451f6a34ce8dbfe78d1ca",
+          "sha256": "e0ee93071c44a1c0bb45269a76982b9f17628a71fdb182b13a6f3e9706fcbb20"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-2.3.tar.gz",
+        "has_sig": false,
+        "md5_digest": "b59419aba22451f6a34ce8dbfe78d1ca",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 22501,
+        "upload_time": "2016-11-08T22:10:00",
+        "url": "https://files.pythonhosted.org/packages/02/a9/a080a8ef0aec0a34b8c8bf92e2f15ce67cd932fcd971016d204d8778fe7d/more-itertools-2.3.tar.gz"
+      }
+    ],
+    "2.4": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "e8eace74b52fe5b321a103357f0f8aee",
+          "sha256": "f047a45f1efeb7a12964b084e51efc1bfbd9a7f2ac191d997a4e650a9042d9cc"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-2.4.tar.gz",
+        "has_sig": false,
+        "md5_digest": "e8eace74b52fe5b321a103357f0f8aee",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 28570,
+        "upload_time": "2016-12-02T14:14:28",
+        "url": "https://files.pythonhosted.org/packages/2d/bf/cbfd5680ec324e4c986f72ce346372dfb8cbe828797ea622d8b0e5ae71a4/more-itertools-2.4.tar.gz"
+      }
+    ],
+    "2.4.1": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "f6bbfe38a6d0ee1a743adb2c1a4fb6fc",
+          "sha256": "95a222d01df60c888d56d86f91219bfbd47106a534e89ca7f80fb555cfbe08c1"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-2.4.1.tar.gz",
+        "has_sig": false,
+        "md5_digest": "f6bbfe38a6d0ee1a743adb2c1a4fb6fc",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 28265,
+        "upload_time": "2016-12-02T14:33:28",
+        "url": "https://files.pythonhosted.org/packages/11/f0/7dc530a028b2b18366974960b26c7125872bdba65e703164617003bbf9fc/more-itertools-2.4.1.tar.gz"
+      }
+    ],
+    "2.5.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "eac24ad801a28512c5c8dc73d2b9577c",
+          "sha256": "8a3b0914ea9452df1b8f5148329e6c33c9b9a94fd7e055b28130af0cae07e05b"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-2.5.0-py2-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "eac24ad801a28512c5c8dc73d2b9577c",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2",
+        "requires_python": null,
+        "size": 28750,
+        "upload_time": "2017-01-07T13:51:20",
+        "url": "https://files.pythonhosted.org/packages/6d/3b/a6e98717a0a03d9a95a7f75fb435863f98d83ddd842f2ae729e6e70b29b4/more_itertools-2.5.0-py2-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "7acbdbb50ca1127aa5592494f6888700",
+          "sha256": "0c56b3e50d9e7d2313ae1618fc154a555a7b813850b6af0c2666ad58fbf3ca13"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-2.5.0-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "7acbdbb50ca1127aa5592494f6888700",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": null,
+        "size": 28748,
+        "upload_time": "2017-01-07T13:51:21",
+        "url": "https://files.pythonhosted.org/packages/4c/7b/9b600d0e6e5eb394f6ac678798e9e1fc93f58dd7b62d5ab41970fad1929b/more_itertools-2.5.0-py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "c9919a8105e121f5bd59d1dc27e503b1",
+          "sha256": "31b029815710364da3cf0c08c31e6a228abd20430d851d8e9a9357125a66ca16"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-2.5.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "c9919a8105e121f5bd59d1dc27e503b1",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 31766,
+        "upload_time": "2017-01-07T13:51:22",
+        "url": "https://files.pythonhosted.org/packages/fb/71/08177b2d12587e40ffa4e17736e1b697966aa08f855221059c7f420e056f/more-itertools-2.5.0.tar.gz"
+      }
+    ],
+    "2.6.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "c3436bf9cff755b6922a521db8c51a44",
+          "sha256": "991d17d0ca4e92fb8eb1d2972300e40c0abdf6b54c6cd282a7e62791334a7c65"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-2.6.0-py2-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "c3436bf9cff755b6922a521db8c51a44",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2",
+        "requires_python": null,
+        "size": 33881,
+        "upload_time": "2017-03-22T01:49:54",
+        "url": "https://files.pythonhosted.org/packages/03/a8/0903632aee727d136e1a6ad39ca400265007864b95e723c2687a2b8e8268/more_itertools-2.6.0-py2-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "883898a87363e589ef9a60f50c7e434e",
+          "sha256": "95b39716d4feab3faa45cdc0f8629b5b35fe8d3d3297031c289db8ef1b22c1eb"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-2.6.0-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "883898a87363e589ef9a60f50c7e434e",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": null,
+        "size": 33880,
+        "upload_time": "2017-03-22T01:50:33",
+        "url": "https://files.pythonhosted.org/packages/ff/2a/93fee8007a5f7761bdb271350804b88726766e2e9599e8dc7f5f3f79123d/more_itertools-2.6.0-py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "82d5af1d4de1f0cd2f7207e2b699e5aa",
+          "sha256": "8094c5b86496d38e63b8362abc767314c6cf701c5ad8d3b7ee481f94e731e50e"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-2.6.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "82d5af1d4de1f0cd2f7207e2b699e5aa",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 36977,
+        "upload_time": "2017-03-22T01:50:53",
+        "url": "https://files.pythonhosted.org/packages/d5/26/b6583caf66ad7c57b4d03d4ec9a0bfea914c6d74af52ea87e4c4c73074da/more-itertools-2.6.0.tar.gz"
+      }
+    ],
+    "3.0.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "86df71a4922ea02ab22ccd7ffd50684f",
+          "sha256": "3eb4e45b63fdba080d471407c30c2cfae4e5513bba80bb2878413760ed14fe32"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-3.0.0-py2-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "86df71a4922ea02ab22ccd7ffd50684f",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2",
+        "requires_python": null,
+        "size": 34501,
+        "upload_time": "2017-04-02T18:30:37",
+        "url": "https://files.pythonhosted.org/packages/50/e7/c536b049dd4982f80cf72bc85fc5936b7342ac3b1f9c57f208f804154233/more_itertools-3.0.0-py2-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "6af06112c3aa2835b30c6e70b4ca6bdf",
+          "sha256": "74070674af14da2d174dd8a3b83b845ebd7cbf951836c264b1e9821b766fce0f"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-3.0.0-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "6af06112c3aa2835b30c6e70b4ca6bdf",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": null,
+        "size": 34500,
+        "upload_time": "2017-04-02T18:30:40",
+        "url": "https://files.pythonhosted.org/packages/02/26/5403b00dbacafda33b36c3ffb5481f493102c9405448ef757f3eb414ee28/more_itertools-3.0.0-py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "a31181a86fe72e8cd9bac9c33afd446a",
+          "sha256": "8b791474073fbaef17fdcd148e33a62fa80ad6edd6eb3f61470e1ccdd30fa182"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-3.0.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "a31181a86fe72e8cd9bac9c33afd446a",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 37622,
+        "upload_time": "2017-04-02T18:30:41",
+        "url": "https://files.pythonhosted.org/packages/a5/06/f75faf76ec1f7c663a7588bb6d952a02e29db533f86cd280b6b1046a90eb/more-itertools-3.0.0.tar.gz"
+      }
+    ],
+    "3.1.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "8325211a9b3ff0b62d215e15a88b0d77",
+          "sha256": "6f4ba61550cad2acbaec2d63515ba893295f32b509f68e85ede78f0eaa123e4c"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-3.1.0-py2-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "8325211a9b3ff0b62d215e15a88b0d77",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2",
+        "requires_python": null,
+        "size": 37163,
+        "upload_time": "2017-05-24T01:18:10",
+        "url": "https://files.pythonhosted.org/packages/8a/66/2a9633b7231eb1bddf67f713b92bddadbbdc5ffc213418741e94f61d3f68/more_itertools-3.1.0-py2-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "ad11d65bc55988ccb453974cf2bd7a12",
+          "sha256": "bb49ed92b491506de10b07989436dac5d45667a08ed84ab423aa69f6b2d5128e"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-3.1.0-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "ad11d65bc55988ccb453974cf2bd7a12",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": null,
+        "size": 37163,
+        "upload_time": "2017-05-24T01:18:11",
+        "url": "https://files.pythonhosted.org/packages/19/3a/367dacdccc038ba4705c638477252d05527284111305be80001ea27176b9/more_itertools-3.1.0-py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "e3dad64e30d0220039d0cb036ae7532c",
+          "sha256": "239089bb2722e0621a66dfa34936ab24efc846e74d45afbf5ac59b76de130a41"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-3.1.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "e3dad64e30d0220039d0cb036ae7532c",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 40334,
+        "upload_time": "2017-05-24T01:18:13",
+        "url": "https://files.pythonhosted.org/packages/df/95/0763711736810fa6f25292274a6d222a28662910779118dd7ef31989fd09/more-itertools-3.1.0.tar.gz"
+      }
+    ],
+    "3.2.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "4a126e3abcebbb05f8999a8f8f8c3997",
+          "sha256": "1e2ec20d4227a3897f6cdb1fb6f4c1045495f44656e2af11a363db21e34f484f"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-3.2.0-py2-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "4a126e3abcebbb05f8999a8f8f8c3997",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2",
+        "requires_python": null,
+        "size": 39262,
+        "upload_time": "2017-06-13T12:50:29",
+        "url": "https://files.pythonhosted.org/packages/e2/90/bdfb44069b942764eefcaecd5af4923ba0a66d090e0250e9163bb0a53378/more_itertools-3.2.0-py2-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "17e2977b6d79fadb5918037076cb8ce4",
+          "sha256": "e744b8eb1d911ea7fe915244aa98393b119c07d116e754126450a0b7d03d7e33"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-3.2.0-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "17e2977b6d79fadb5918037076cb8ce4",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": null,
+        "size": 39260,
+        "upload_time": "2017-06-13T12:50:32",
+        "url": "https://files.pythonhosted.org/packages/a6/7e/b5f4dc46dc5964c798d9ba307d8331c86fb08c57c7a5b08100463155a16e/more_itertools-3.2.0-py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "fa38fa7cd1784ecf3594fbc93fb15595",
+          "sha256": "bbe567eedc2fa930d802b848c808b5a9323f7fad2cce2ecd8832ec6e3b019e4a"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-3.2.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "fa38fa7cd1784ecf3594fbc93fb15595",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 42528,
+        "upload_time": "2017-06-13T12:50:33",
+        "url": "https://files.pythonhosted.org/packages/21/db/4609a137c2dc778ea936baf4f16694b82c829f0e01367886b91ecac31ac3/more-itertools-3.2.0.tar.gz"
+      }
+    ],
+    "4.0.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "8ab724343cc20162ef1fa0bec9a07ba9",
+          "sha256": "43c2f5216b359f725c821395f238bc43456a4f2367c3dcf8fd5120873e2d4d18"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-4.0.0-py2-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "8ab724343cc20162ef1fa0bec9a07ba9",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2",
+        "requires_python": null,
+        "size": 44164,
+        "upload_time": "2017-12-02T15:45:48",
+        "url": "https://files.pythonhosted.org/packages/1d/7f/89a00239761aefb537b20ee9be15b3fc3ffbaae248ed246ad6b4deb2658d/more_itertools-4.0.0-py2-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "7753679c7ad9d74a0556577673fcbb92",
+          "sha256": "188121566efe863c40b6d09563e1b86d48eb36b673b5c5e9d4df17f1a470be70"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-4.0.0-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "7753679c7ad9d74a0556577673fcbb92",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": null,
+        "size": 44164,
+        "upload_time": "2017-12-02T15:45:50",
+        "url": "https://files.pythonhosted.org/packages/c9/b0/80fea20383ebf8264945df72976de50d69e2a69a15611c1b3b4ef28ffb47/more_itertools-4.0.0-py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "0d5fade88563b212c868ce571fce3a0e",
+          "sha256": "7dd9ca9a727e7628731405573b6c475b91d0ce67cc99705387c5640f24ba534f"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-4.0.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "0d5fade88563b212c868ce571fce3a0e",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 47451,
+        "upload_time": "2017-12-02T15:45:52",
+        "url": "https://files.pythonhosted.org/packages/88/bf/10bbe288bcd43eb4ca765c39d83fb85829770f70d99db6389987e995ec67/more-itertools-4.0.0.tar.gz"
+      }
+    ],
+    "4.0.1": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "ca6461348576bb009f6870efedb1faf8",
+          "sha256": "7e33c0aa139e78345da641c00203b02afa24d86fc13cd20f1db5413c35a9436c"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-4.0.1-py2-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "ca6461348576bb009f6870efedb1faf8",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2",
+        "requires_python": null,
+        "size": 44214,
+        "upload_time": "2017-12-03T02:53:45",
+        "url": "https://files.pythonhosted.org/packages/af/51/c23c113b18ea93d7793c2df4d649d1e0484b4f1dbc3f6b589bf5f1842ae0/more_itertools-4.0.1-py2-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "8c8af1aa12e774baef6031229a8f2e65",
+          "sha256": "f0bf80f8aaeb8bcc2b33976146e079c668fc8c6990d0d8573362b89cbf657d8d"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-4.0.1-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "8c8af1aa12e774baef6031229a8f2e65",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": null,
+        "size": 44214,
+        "upload_time": "2017-12-03T02:53:46",
+        "url": "https://files.pythonhosted.org/packages/78/0a/565a259230401617c768e0c0737e67a1ba881de607f3d5cdbc4d2c603805/more_itertools-4.0.1-py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "fef89b28d050e325fbb7eb209e75ab45",
+          "sha256": "5d21dcefa19782f9ec9aa64e0bfd903f5024512b1e1f17519800b193b2e64d31"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-4.0.1.tar.gz",
+        "has_sig": false,
+        "md5_digest": "fef89b28d050e325fbb7eb209e75ab45",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 47492,
+        "upload_time": "2017-12-03T02:53:47",
+        "url": "https://files.pythonhosted.org/packages/a2/28/d02c111c230a769a32fd97e9f6d42bfb0136da381f356b945db38367b3d3/more-itertools-4.0.1.tar.gz"
+      }
+    ],
+    "4.1.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "2a6a4b9abf941edf6d190fc995c0c935",
+          "sha256": "11a625025954c20145b37ff6309cd54e39ca94f72f6bb9576d1195db6fa2442e"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-4.1.0-py2-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "2a6a4b9abf941edf6d190fc995c0c935",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2",
+        "requires_python": null,
+        "size": 47987,
+        "upload_time": "2018-01-21T15:34:19",
+        "url": "https://files.pythonhosted.org/packages/4a/88/c28e2a2da8f3dc3a391d9c97ad949f2ea0c05198222e7e6af176e5bf9b26/more_itertools-4.1.0-py2-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "3229d872f8d193e36119ec76e1b0c097",
+          "sha256": "0dd8f72eeab0d2c3bd489025bb2f6a1b8342f9b198f6fc37b52d15cfa4531fea"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-4.1.0-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "3229d872f8d193e36119ec76e1b0c097",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": null,
+        "size": 47988,
+        "upload_time": "2018-01-21T15:34:20",
+        "url": "https://files.pythonhosted.org/packages/7a/46/886917c6a4ce49dd3fff250c01c5abac5390d57992751384fe61befc4877/more_itertools-4.1.0-py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "246f46686d95879fbad37855c115dc52",
+          "sha256": "c9ce7eccdcb901a2c75d326ea134e0886abfbea5f93e91cc95de9507c0816c44"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-4.1.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "246f46686d95879fbad37855c115dc52",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 51310,
+        "upload_time": "2018-01-21T15:34:22",
+        "url": "https://files.pythonhosted.org/packages/db/0b/f5660bf6299ec5b9f17bd36096fa8148a1c843fa77ddfddf9bebac9301f7/more-itertools-4.1.0.tar.gz"
+      }
+    ],
+    "4.2.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "89e95ea35f539a8e82c9a7b6156e4de1",
+          "sha256": "a18d870ef2ffca2b8463c0070ad17b5978056f403fb64e3f15fe62a52db21cc0"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-4.2.0-py2-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "89e95ea35f539a8e82c9a7b6156e4de1",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2",
+        "requires_python": null,
+        "size": 45015,
+        "upload_time": "2018-05-24T01:42:33",
+        "url": "https://files.pythonhosted.org/packages/9e/92/d05d8679c3bcaa263169aa47de660080df36d35697855515745657c1ba78/more_itertools-4.2.0-py2-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "6c3bac88c1996a46a4edc7631883098a",
+          "sha256": "6703844a52d3588f951883005efcf555e49566a48afd4db4e965d69b883980d3"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-4.2.0-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "6c3bac88c1996a46a4edc7631883098a",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": null,
+        "size": 45016,
+        "upload_time": "2018-05-24T01:42:34",
+        "url": "https://files.pythonhosted.org/packages/85/40/90c3b0393e12b9827381004224de8814686e3d7182f9d4182477f600826d/more_itertools-4.2.0-py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "5629c955d17df328ec534989f0649369",
+          "sha256": "2b6b9893337bfd9166bee6a62c2b0c9fe7735dcf85948b387ec8cba30e85d8e8"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-4.2.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "5629c955d17df328ec534989f0649369",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 56871,
+        "upload_time": "2018-05-24T01:42:35",
+        "url": "https://files.pythonhosted.org/packages/c0/2f/6773347277d76c5ade4414a6c3f785ef27e7f5c4b0870ec7e888e66a8d83/more-itertools-4.2.0.tar.gz"
+      }
+    ],
+    "4.3.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "f4bd06646f00ffdb71a25189c4ff99ae",
+          "sha256": "fcbfeaea0be121980e15bc97b3817b5202ca73d0eae185b4550cbfce2a3ebb3d"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-4.3.0-py2-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "f4bd06646f00ffdb71a25189c4ff99ae",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2",
+        "requires_python": null,
+        "size": 48478,
+        "upload_time": "2018-07-31T12:34:02",
+        "url": "https://files.pythonhosted.org/packages/fb/d3/77f337876600747ae307ea775ff264c5304a691941cd347382c7932c60ad/more_itertools-4.3.0-py2-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "53115b102a8a94f79d3098661988e3dc",
+          "sha256": "c187a73da93e7a8acc0001572aebc7e3c69daf7bf6881a2cea10650bd4420092"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-4.3.0-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "53115b102a8a94f79d3098661988e3dc",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": null,
+        "size": 48478,
+        "upload_time": "2018-07-31T12:34:04",
+        "url": "https://files.pythonhosted.org/packages/79/b1/eace304ef66bd7d3d8b2f78cc374b73ca03bc53664d78151e9df3b3996cc/more_itertools-4.3.0-py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "42157ef9b677bdf6d3609ed6eadcbd4a",
+          "sha256": "c476b5d3a34e12d40130bc2f935028b5f636df8f372dc2c1c01dc19681b2039e"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-4.3.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "42157ef9b677bdf6d3609ed6eadcbd4a",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 63266,
+        "upload_time": "2018-07-31T12:34:05",
+        "url": "https://files.pythonhosted.org/packages/88/ff/6d485d7362f39880810278bdc906c13300db05485d9c65971dec1142da6a/more-itertools-4.3.0.tar.gz"
+      }
+    ],
+    "5.0.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "df2555ed357ba7edf80440eaca953776",
+          "sha256": "c0a5785b1109a6bd7fac76d6837fd1feca158e54e521ccd2ae8bfe393cc9d4fc"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-5.0.0-py2-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "df2555ed357ba7edf80440eaca953776",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2",
+        "requires_python": null,
+        "size": 52303,
+        "upload_time": "2018-12-27T19:48:07",
+        "url": "https://files.pythonhosted.org/packages/2f/9d/dcfe59e213093695f108508af1214cf9cd95cc5489e46877ec5cb56369e5/more_itertools-5.0.0-py2-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "f1e8d8b0090ec75fc1d81a0857d74ec1",
+          "sha256": "fe7a7cae1ccb57d33952113ff4fa1bc5f879963600ed74918f1236e212ee50b9"
+        },
+        "downloads": -1,
+        "filename": "more_itertools-5.0.0-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "f1e8d8b0090ec75fc1d81a0857d74ec1",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": null,
+        "size": 52304,
+        "upload_time": "2018-12-27T19:48:08",
+        "url": "https://files.pythonhosted.org/packages/a4/a6/42f17d065bda1fac255db13afc94c93dbfb64393eae37c749b4cb0752fc7/more_itertools-5.0.0-py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "f2ea58aa336ce6c13b7b225b3bbe305d",
+          "sha256": "38a936c0a6d98a38bcc2d03fdaaedaba9f412879461dd2ceff8d37564d6522e4"
+        },
+        "downloads": -1,
+        "filename": "more-itertools-5.0.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "f2ea58aa336ce6c13b7b225b3bbe305d",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 67359,
+        "upload_time": "2018-12-27T19:48:10",
+        "url": "https://files.pythonhosted.org/packages/dd/26/30fc0d541d9fdf55faf5ba4b0fd68f81d5bd2447579224820ad525934178/more-itertools-5.0.0.tar.gz"
+      }
+    ]
+  },
+  "urls": [
+    {
+      "comment_text": "",
+      "digests": {
+        "md5": "df2555ed357ba7edf80440eaca953776",
+        "sha256": "c0a5785b1109a6bd7fac76d6837fd1feca158e54e521ccd2ae8bfe393cc9d4fc"
+      },
+      "downloads": -1,
+      "filename": "more_itertools-5.0.0-py2-none-any.whl",
+      "has_sig": false,
+      "md5_digest": "df2555ed357ba7edf80440eaca953776",
+      "packagetype": "bdist_wheel",
+      "python_version": "py2",
+      "requires_python": null,
+      "size": 52303,
+      "upload_time": "2018-12-27T19:48:07",
+      "url": "https://files.pythonhosted.org/packages/2f/9d/dcfe59e213093695f108508af1214cf9cd95cc5489e46877ec5cb56369e5/more_itertools-5.0.0-py2-none-any.whl"
+    },
+    {
+      "comment_text": "",
+      "digests": {
+        "md5": "f1e8d8b0090ec75fc1d81a0857d74ec1",
+        "sha256": "fe7a7cae1ccb57d33952113ff4fa1bc5f879963600ed74918f1236e212ee50b9"
+      },
+      "downloads": -1,
+      "filename": "more_itertools-5.0.0-py3-none-any.whl",
+      "has_sig": false,
+      "md5_digest": "f1e8d8b0090ec75fc1d81a0857d74ec1",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": null,
+      "size": 52304,
+      "upload_time": "2018-12-27T19:48:08",
+      "url": "https://files.pythonhosted.org/packages/a4/a6/42f17d065bda1fac255db13afc94c93dbfb64393eae37c749b4cb0752fc7/more_itertools-5.0.0-py3-none-any.whl"
+    },
+    {
+      "comment_text": "",
+      "digests": {
+        "md5": "f2ea58aa336ce6c13b7b225b3bbe305d",
+        "sha256": "38a936c0a6d98a38bcc2d03fdaaedaba9f412879461dd2ceff8d37564d6522e4"
+      },
+      "downloads": -1,
+      "filename": "more-itertools-5.0.0.tar.gz",
+      "has_sig": false,
+      "md5_digest": "f2ea58aa336ce6c13b7b225b3bbe305d",
+      "packagetype": "sdist",
+      "python_version": "source",
+      "requires_python": null,
+      "size": 67359,
+      "upload_time": "2018-12-27T19:48:10",
+      "url": "https://files.pythonhosted.org/packages/dd/26/30fc0d541d9fdf55faf5ba4b0fd68f81d5bd2447579224820ad525934178/more-itertools-5.0.0.tar.gz"
+    }
+  ]
+}

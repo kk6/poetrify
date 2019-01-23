@@ -2,7 +2,6 @@ import shlex
 
 import licensename
 
-from .files import get_requires
 from .files import Pipfile
 from .files import RequirementsTxt
 
@@ -20,14 +19,13 @@ def build_poetry_init_command(src):
         src = Pipfile(src)
     else:
         src = RequirementsTxt(src)
-    packages, dev_packages = get_requires(src)
 
     cmd = ["poetry", "init"]
 
-    for package in packages:
+    for package in src.packages:
         cmd.append(f"--dependency={shlex.quote(package)}")
 
-    for package in dev_packages:
+    for package in src.dev_packages:
         cmd.append(f"--dev-dependency={shlex.quote(package)}")
 
     try:

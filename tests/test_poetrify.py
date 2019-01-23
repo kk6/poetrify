@@ -11,7 +11,7 @@ def test_foo_dry_run(command_tester_factory):
     assert pytest_wrapped_exit.type == SystemExit
     assert pytest_wrapped_exit.value.code == os.EX_OK
     assert (
-        "poetry init --dependency=scrapy --dependency=beautifulsoup4 --license=MIT"
+        "poetry init --dependency=scrapy --dependency=beautifulsoup4 --dev-dependency=pytest --license=MIT"
         in command_tester.io.fetch_output()
     )
 
@@ -23,7 +23,7 @@ def test_foo(command_tester_factory):
         """\
         Generated init command:
 
-        poetry init --dependency=scrapy --dependency=beautifulsoup4 --license=MIT
+        poetry init --dependency=scrapy --dependency=beautifulsoup4 --dev-dependency=pytest --license=MIT
 
         Execute the above command. Also, the following output is due to Poetry.
         """

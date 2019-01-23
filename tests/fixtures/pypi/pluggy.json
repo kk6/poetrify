@@ -1,0 +1,445 @@
+{
+  "info": {
+    "author": "Holger Krekel",
+    "author_email": "holger@merlinux.eu",
+    "bugtrack_url": null,
+    "classifiers": [
+      "Development Status :: 4 - Beta",
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: MIT License",
+      "Operating System :: MacOS :: MacOS X",
+      "Operating System :: Microsoft :: Windows",
+      "Operating System :: POSIX",
+      "Programming Language :: Python :: 2",
+      "Programming Language :: Python :: 2.7",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3.4",
+      "Programming Language :: Python :: 3.5",
+      "Programming Language :: Python :: 3.6",
+      "Programming Language :: Python :: Implementation :: CPython",
+      "Programming Language :: Python :: Implementation :: PyPy",
+      "Topic :: Software Development :: Libraries",
+      "Topic :: Software Development :: Testing",
+      "Topic :: Utilities"
+    ],
+    "description": "====================================================\npluggy - A minimalist production ready plugin system\n====================================================\n\n|pypi| |conda-forge| |versions| |travis| |appveyor| |gitter| |black|\n\nThis is the core framework used by the `pytest`_, `tox`_, and `devpi`_ projects.\n\nPlease `read the docs`_ to learn more!\n\nA definitive example\n====================\n.. code-block:: python\n\n    import pluggy\n\n    hookspec = pluggy.HookspecMarker(\"myproject\")\n    hookimpl = pluggy.HookimplMarker(\"myproject\")\n\n\n    class MySpec(object):\n        \"\"\"A hook specification namespace.\n        \"\"\"\n\n        @hookspec\n        def myhook(self, arg1, arg2):\n            \"\"\"My special little hook that you can customize.\n            \"\"\"\n\n\n    class Plugin_1(object):\n        \"\"\"A hook implementation namespace.\n        \"\"\"\n\n        @hookimpl\n        def myhook(self, arg1, arg2):\n            print(\"inside Plugin_1.myhook()\")\n            return arg1 + arg2\n\n\n    class Plugin_2(object):\n        \"\"\"A 2nd hook implementation namespace.\n        \"\"\"\n\n        @hookimpl\n        def myhook(self, arg1, arg2):\n            print(\"inside Plugin_2.myhook()\")\n            return arg1 - arg2\n\n\n    # create a manager and add the spec\n    pm = pluggy.PluginManager(\"myproject\")\n    pm.add_hookspecs(MySpec)\n\n    # register plugins\n    pm.register(Plugin_1())\n    pm.register(Plugin_2())\n\n    # call our ``myhook`` hook\n    results = pm.hook.myhook(arg1=1, arg2=2)\n    print(results)\n\n\n.. badges\n\n.. |pypi| image:: https://img.shields.io/pypi/v/pluggy.svg\n    :target: https://pypi.org/pypi/pluggy\n\n.. |versions| image:: https://img.shields.io/pypi/pyversions/pluggy.svg\n    :target: https://pypi.org/pypi/pluggy\n\n.. |travis| image:: https://img.shields.io/travis/pytest-dev/pluggy/master.svg\n    :target: https://travis-ci.org/pytest-dev/pluggy\n\n.. |appveyor| image:: https://img.shields.io/appveyor/ci/pytestbot/pluggy/master.svg\n    :target: https://ci.appveyor.com/project/pytestbot/pluggy\n\n.. |conda-forge| image:: https://img.shields.io/conda/vn/conda-forge/pluggy.svg\n    :target: https://anaconda.org/conda-forge/pytest\n\n.. |gitter| image:: https://badges.gitter.im/pytest-dev/pluggy.svg\n    :alt: Join the chat at https://gitter.im/pytest-dev/pluggy\n    :target: https://gitter.im/pytest-dev/pluggy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge\n\n.. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg\n    :target: https://github.com/ambv/black\n\n.. links\n.. _pytest:\n    http://pytest.org\n.. _tox:\n    https://tox.readthedocs.org\n.. _devpi:\n    http://doc.devpi.net\n.. _read the docs:\n   https://pluggy.readthedocs.io/en/latest/\n\n\npluggy 0.8.1 (2018-11-09)\n=========================\n\nTrivial/Internal Changes\n------------------------\n\n- `#166 <https://github.com/pytest-dev/pluggy/issues/166>`_: Add ``stacklevel=2`` to implprefix warning so that the reported location of warning is the caller of PluginManager.\n\n\npluggy 0.8.0 (2018-10-15)\n=========================\n\nFeatures\n--------\n\n- `#177 <https://github.com/pytest-dev/pluggy/issues/177>`_: Add ``get_hookimpls()`` method to hook callers.\n\n\n\nTrivial/Internal Changes\n------------------------\n\n- `#165 <https://github.com/pytest-dev/pluggy/issues/165>`_: Add changelog in long package description and documentation.\n\n\n- `#172 <https://github.com/pytest-dev/pluggy/issues/172>`_: Add a test exemplifying the opt-in nature of spec defined args.\n\n\n- `#57 <https://github.com/pytest-dev/pluggy/issues/57>`_: Encapsulate hook specifications in a type for easier introspection.\n\n\n=========\nChangelog\n=========\n\n.. towncrier release notes start\n\n\npluggy 0.7.1 (2018-07-28)\n=========================\n\nDeprecations and Removals\n-------------------------\n\n- `#116 <https://github.com/pytest-dev/pluggy/issues/116>`_: Deprecate the ``implprefix`` kwarg to ``PluginManager`` and instead\n  expect users to start using explicit ``HookimplMarker`` everywhere.\n\n\n\nFeatures\n--------\n\n- `#122 <https://github.com/pytest-dev/pluggy/issues/122>`_: Add ``.plugin`` member to ``PluginValidationError`` to access failing plugin during post-mortem.\n\n\n- `#138 <https://github.com/pytest-dev/pluggy/issues/138>`_: Add per implementation warnings support for hookspecs allowing for both\n  deprecation and future warnings of legacy and (future) experimental hooks\n  respectively.\n\n\n\nBug Fixes\n---------\n\n- `#110 <https://github.com/pytest-dev/pluggy/issues/110>`_: Fix a bug where ``_HookCaller.call_historic()`` would call the ``proc``\n  arg even when the default is ``None`` resulting in a ``TypeError``.\n\n- `#160 <https://github.com/pytest-dev/pluggy/issues/160>`_: Fix problem when handling ``VersionConflict`` errors when loading setuptools plugins.\n\n\n\nImproved Documentation\n----------------------\n\n- `#123 <https://github.com/pytest-dev/pluggy/issues/123>`_: Document how exceptions are handled and how the hook call loop\n  terminates immediately on the first error which is then delivered\n  to any surrounding wrappers.\n\n\n- `#136 <https://github.com/pytest-dev/pluggy/issues/136>`_: Docs rework including a much better introduction and comprehensive example\n  set for new users. A big thanks goes out to @obestwalter for the great work!\n\n\n\nTrivial/Internal Changes\n------------------------\n\n- `#117 <https://github.com/pytest-dev/pluggy/issues/117>`_: Break up the main monolithic package modules into separate modules by concern\n\n\n- `#131 <https://github.com/pytest-dev/pluggy/issues/131>`_: Automate ``setuptools`` wheels building and PyPi upload using TravisCI.\n\n\n- `#153 <https://github.com/pytest-dev/pluggy/issues/153>`_: Reorganize tests more appropriately by modules relating to each\n  internal component/feature. This is in an effort to avoid (future)\n  duplication and better separation of concerns in the test set.\n\n\n- `#156 <https://github.com/pytest-dev/pluggy/issues/156>`_: Add ``HookImpl.__repr__()`` for better debugging.\n\n\n- `#66 <https://github.com/pytest-dev/pluggy/issues/66>`_: Start using ``towncrier`` and a custom ``tox`` environment to prepare releases!\n\n\npluggy 0.7.0 (Unreleased)\n=========================\n\n* `#160 <https://github.com/pytest-dev/pluggy/issues/160>`_: We discovered a deployment issue so this version was never released to PyPI, only the tag exists.\n\npluggy 0.6.0 (2017-11-24)\n=========================\n\n- Add CI testing for the features, release, and master\n  branches of ``pytest`` (PR `#79`_).\n- Document public API for ``_Result`` objects passed to wrappers\n  (PR `#85`_).\n- Document and test hook LIFO ordering (PR `#85`_).\n- Turn warnings into errors in test suite (PR `#89`_).\n- Deprecate ``_Result.result`` (PR `#88`_).\n- Convert ``_Multicall`` to a simple function distinguishing it from\n  the legacy version (PR `#90`_).\n- Resolve E741 errors (PR `#96`_).\n- Test and bug fix for unmarked hook collection (PRs `#97`_ and\n  `#102`_).\n- Drop support for EOL Python 2.6 and 3.3 (PR `#103`_).\n- Fix ``inspect`` based arg introspection on py3.6 (PR `#94`_).\n\n.. _#79: https://github.com/pytest-dev/pluggy/pull/79\n.. _#85: https://github.com/pytest-dev/pluggy/pull/85\n.. _#88: https://github.com/pytest-dev/pluggy/pull/88\n.. _#89: https://github.com/pytest-dev/pluggy/pull/89\n.. _#90: https://github.com/pytest-dev/pluggy/pull/90\n.. _#94: https://github.com/pytest-dev/pluggy/pull/94\n.. _#96: https://github.com/pytest-dev/pluggy/pull/96\n.. _#97: https://github.com/pytest-dev/pluggy/pull/97\n.. _#102: https://github.com/pytest-dev/pluggy/pull/102\n.. _#103: https://github.com/pytest-dev/pluggy/pull/103\n\n\npluggy 0.5.2 (2017-09-06)\n=========================\n\n- fix bug where ``firstresult`` wrappers were being sent an incorrectly configured\n  ``_Result`` (a list was set instead of a single value). Add tests to check for\n  this as well as ``_Result.force_result()`` behaviour. Thanks to `@tgoodlet`_\n  for the PR `#72`_.\n\n- fix incorrect ``getattr``  of ``DeprecationWarning`` from the ``warnings``\n  module. Thanks to `@nicoddemus`_ for the PR `#77`_.\n\n- hide ``pytest`` tracebacks in certain core routines. Thanks to\n  `@nicoddemus`_ for the PR `#80`_.\n\n.. _#72: https://github.com/pytest-dev/pluggy/pull/72\n.. _#77: https://github.com/pytest-dev/pluggy/pull/77\n.. _#80: https://github.com/pytest-dev/pluggy/pull/80\n\n\npluggy 0.5.1 (2017-08-29)\n=========================\n\n- fix a bug and add tests for case where ``firstresult`` hooks return\n  ``None`` results. Thanks to `@RonnyPfannschmidt`_ and `@tgoodlet`_\n  for the issue (`#68`_) and PR (`#69`_) respectively.\n\n.. _#69: https://github.com/pytest-dev/pluggy/pull/69\n.. _#68: https://github.com/pytest-dev/pluggy/issues/68\n\n\npluggy 0.5.0 (2017-08-28)\n=========================\n\n- fix bug where callbacks for historic hooks would not be called for\n  already registered plugins.  Thanks `@vodik`_ for the PR\n  and `@hpk42`_ for further fixes.\n\n- fix `#17`_ by considering only actual functions for hooks\n  this removes the ability to register arbitrary callable objects\n  which at first glance is a reasonable simplification,\n  thanks `@RonnyPfannschmidt`_ for report and pr.\n\n- fix `#19`_: allow registering hookspecs from instances.  The PR from\n  `@tgoodlet`_ also modernized the varnames implementation.\n\n- resolve `#32`_: split up the test set into multiple modules.\n  Thanks to `@RonnyPfannschmidt`_ for the PR and `@tgoodlet`_ for\n  the initial request.\n\n- resolve `#14`_: add full sphinx docs. Thanks to `@tgoodlet`_ for\n  PR `#39`_.\n\n- add hook call mismatch warnings. Thanks to `@tgoodlet`_ for the\n  PR `#42`_.\n\n- resolve `#44`_: move to new-style classes. Thanks to `@MichalTHEDUDE`_\n  for PR `#46`_.\n\n- add baseline benchmarking/speed tests using ``pytest-benchmark``\n  in PR `#54`_.  Thanks to `@tgoodlet`_.\n\n- update the README to showcase the API. Thanks to `@tgoodlet`_ for the\n  issue and PR `#55`_.\n\n- deprecate ``__multicall__`` and add a faster call loop implementation.\n  Thanks to `@tgoodlet`_ for PR `#58`_.\n\n- raise a comprehensible error when a ``hookimpl`` is called with positional\n  args. Thanks to `@RonnyPfannschmidt`_ for the issue and `@tgoodlet`_ for\n  PR `#60`_.\n\n- fix the ``firstresult`` test making it more complete\n  and remove a duplicate of that test. Thanks to `@tgoodlet`_\n  for PR `#62`_.\n\n.. _#62: https://github.com/pytest-dev/pluggy/pull/62\n.. _#60: https://github.com/pytest-dev/pluggy/pull/60\n.. _#58: https://github.com/pytest-dev/pluggy/pull/58\n.. _#55: https://github.com/pytest-dev/pluggy/pull/55\n.. _#54: https://github.com/pytest-dev/pluggy/pull/54\n.. _#46: https://github.com/pytest-dev/pluggy/pull/46\n.. _#44: https://github.com/pytest-dev/pluggy/issues/44\n.. _#42: https://github.com/pytest-dev/pluggy/pull/42\n.. _#39: https://github.com/pytest-dev/pluggy/pull/39\n.. _#32: https://github.com/pytest-dev/pluggy/pull/32\n.. _#19: https://github.com/pytest-dev/pluggy/issues/19\n.. _#17: https://github.com/pytest-dev/pluggy/issues/17\n.. _#14: https://github.com/pytest-dev/pluggy/issues/14\n\n\npluggy 0.4.0 (2016-09-25)\n=========================\n\n- add ``has_plugin(name)`` method to pluginmanager.  thanks `@nicoddemus`_.\n\n- fix `#11`_: make plugin parsing more resilient against exceptions\n  from ``__getattr__`` functions. Thanks `@nicoddemus`_.\n\n- fix issue `#4`_: specific ``HookCallError`` exception for when a hook call\n  provides not enough arguments.\n\n- better error message when loading setuptools entrypoints fails\n  due to a ``VersionConflict``.  Thanks `@blueyed`_.\n\n.. _#11: https://github.com/pytest-dev/pluggy/issues/11\n.. _#4: https://github.com/pytest-dev/pluggy/issues/4\n\n\npluggy 0.3.1 (2015-09-17)\n=========================\n\n- avoid using deprecated-in-python3.5 getargspec method. Thanks\n  `@mdboom`_.\n\n\npluggy 0.3.0 (2015-05-07)\n=========================\n\ninitial release\n\n.. contributors\n.. _@hpk42: https://github.com/hpk42\n.. _@tgoodlet: https://github.com/tgoodlet\n.. _@MichalTHEDUDE: https://github.com/MichalTHEDUDE\n.. _@vodik: https://github.com/vodik\n.. _@RonnyPfannschmidt: https://github.com/RonnyPfannschmidt\n.. _@blueyed: https://github.com/blueyed\n.. _@nicoddemus: https://github.com/nicoddemus\n.. _@mdboom: https://github.com/mdboom\n\n\n",
+    "description_content_type": "",
+    "docs_url": null,
+    "download_url": "",
+    "downloads": { "last_day": -1, "last_month": -1, "last_week": -1 },
+    "home_page": "https://github.com/pytest-dev/pluggy",
+    "keywords": "",
+    "license": "MIT license",
+    "maintainer": "",
+    "maintainer_email": "",
+    "name": "pluggy",
+    "package_url": "https://pypi.org/project/pluggy/",
+    "platform": "unix",
+    "project_url": "https://pypi.org/project/pluggy/",
+    "project_urls": { "Homepage": "https://github.com/pytest-dev/pluggy" },
+    "release_url": "https://pypi.org/project/pluggy/0.8.1/",
+    "requires_dist": ["pre-commit ; extra == 'dev'", "tox ; extra == 'dev'"],
+    "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+    "summary": "plugin and hook calling mechanisms for python",
+    "version": "0.8.1"
+  },
+  "last_serial": 4678410,
+  "releases": {
+    "0.3.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "575b0796bc8faf39e5cd65a07436db20",
+          "sha256": "205a87398047253223d0465587a8778dce5b1fb99a519b1b76e40d4761ef9397"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.3.0-py2.py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "575b0796bc8faf39e5cd65a07436db20",
+        "packagetype": "bdist_wheel",
+        "python_version": "2.7",
+        "requires_python": null,
+        "size": 10692,
+        "upload_time": "2015-05-07T09:35:45",
+        "url": "https://files.pythonhosted.org/packages/7a/09/56dd120ac549f335cc43e777432c5cca15c3c9cfeae8685ea5bd1a5e3779/pluggy-0.3.0-py2.py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "7e9e718884cac045efe1400c7ad016b5",
+          "sha256": "52631797ad4857e09f0f2b642392d548b304713d0a02a534f1517cffc008a89c"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.3.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "7e9e718884cac045efe1400c7ad016b5",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 15733,
+        "upload_time": "2015-05-07T09:35:49",
+        "url": "https://files.pythonhosted.org/packages/c3/61/1d23c57fcc6a5dcdf4ffd25ea1d567a8462762fab74ab9bb20df62b4a063/pluggy-0.3.0.tar.gz"
+      }
+    ],
+    "0.3.1": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "bc68660e5e5cf7242ccdc0725de84c3c",
+          "sha256": "48096d7015b8d87a83fc064e8b5cc61ea2e235f1b86dd67889d8d53257f350c6"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.3.1-py2.py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "bc68660e5e5cf7242ccdc0725de84c3c",
+        "packagetype": "bdist_wheel",
+        "python_version": "2.7",
+        "requires_python": null,
+        "size": 10955,
+        "upload_time": "2015-09-17T11:30:25",
+        "url": "https://files.pythonhosted.org/packages/d3/ff/d63342af76d20f9b94c2138aef8739df23311e3ce8a8ae7e4b0733ab0827/pluggy-0.3.1-py2.py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "ecdd791e309f60668b66fec97c2ee7db",
+          "sha256": "159cc783e056c07da6552aa5aef6b1e6c0064b4f18bd49c531fd2d40aafb0ea3"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.3.1.tar.gz",
+        "has_sig": false,
+        "md5_digest": "ecdd791e309f60668b66fec97c2ee7db",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 15821,
+        "upload_time": "2015-09-17T11:30:20",
+        "url": "https://files.pythonhosted.org/packages/1b/a9/6f5f80b75a8d84d21a8a13486fe26a2da9f043f93b464b2e3928be256dc4/pluggy-0.3.1.tar.gz"
+      }
+    ],
+    "0.4.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "df144953fde470f504573b32655259e2",
+          "sha256": "d2766caddfbbc8ef641d47da556d2ae3056860ce4d553aa04009e42b76a09951"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.4.0-py2.py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "df144953fde470f504573b32655259e2",
+        "packagetype": "bdist_wheel",
+        "python_version": "2.7",
+        "requires_python": null,
+        "size": 11900,
+        "upload_time": "2016-09-25T23:05:17",
+        "url": "https://files.pythonhosted.org/packages/52/5e/3e63895c9730f37195db7d3f3a6465b7ffce08871ca217947b81f452ce62/pluggy-0.4.0-py2.py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "447a92368175965d2fbacaef9f3df842",
+          "sha256": "dd841b5d290b252cf645f75f3bd37ceecfa0f36394ab313e4f785fe68a4081a4"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.4.0.zip",
+        "has_sig": false,
+        "md5_digest": "447a92368175965d2fbacaef9f3df842",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 19054,
+        "upload_time": "2016-09-25T23:05:19",
+        "url": "https://files.pythonhosted.org/packages/38/e2/b23434f4030bbb1af3bcdbb2ecff6b11cf2e467622446ce66a08e99f2ea9/pluggy-0.4.0.zip"
+      }
+    ],
+    "0.5.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "892e73c9f212c19142c60ce62cb6e56c",
+          "sha256": "99e205b82bc98cf3c37f6ded92eaf062f24ee539d71161473e194a54c367b86c"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.5.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "892e73c9f212c19142c60ce62cb6e56c",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 18620,
+        "upload_time": "2017-08-29T00:15:01",
+        "url": "https://files.pythonhosted.org/packages/0c/78/9ee1dd3a1df2f19d49ca1a8d03086db3aa96cce1f0c98ed7bb823f0adcdc/pluggy-0.5.0.tar.gz"
+      }
+    ],
+    "0.5.1": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "17cb75a831fd2cd24f752abb09d20e8e",
+          "sha256": "359f6d0fbcbb27950eb89909910ce909c90b834bfec8c4b1ca0840f6ba398bfb"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.5.1-py2.py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "17cb75a831fd2cd24f752abb09d20e8e",
+        "packagetype": "bdist_wheel",
+        "python_version": "3.6",
+        "requires_python": null,
+        "size": 13540,
+        "upload_time": "2018-04-15T16:48:02",
+        "url": "https://files.pythonhosted.org/packages/aa/2b/11b53318ae1c96f163d0317ddf10f2b1892b9b38ef56ab6aad554c68a4f2/pluggy-0.5.1-py2.py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "48185bd2bc3f439b9de6ad18fe64fe4e",
+          "sha256": "39c06527c94775911c4a3fc0ad409a1ba48ec509b0054590eb65d967964eec3a"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.5.1.tar.gz",
+        "has_sig": false,
+        "md5_digest": "48185bd2bc3f439b9de6ad18fe64fe4e",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 18742,
+        "upload_time": "2017-08-29T16:34:14",
+        "url": "https://files.pythonhosted.org/packages/07/ca/597690bff168f08291819c96497d077017f9794d04ae9853dd1f9eda8f73/pluggy-0.5.1.tar.gz"
+      }
+    ],
+    "0.5.2": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "9c16fc8d013d2fce5247e8e12b9039c6",
+          "sha256": "cab5800ece3d679358782c4d674be9912f52918bc919888b228fdf5705fcd067"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.5.2-py2.py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "9c16fc8d013d2fce5247e8e12b9039c6",
+        "packagetype": "bdist_wheel",
+        "python_version": "3.6",
+        "requires_python": null,
+        "size": 13577,
+        "upload_time": "2018-04-15T16:48:12",
+        "url": "https://files.pythonhosted.org/packages/4d/d1/e478b8a33230f85f38e35b386376fbd115219de2a2c4c8783610851ad1c3/pluggy-0.5.2-py2.py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "7b26ef8148c330ab17796b4f297527c0",
+          "sha256": "bd60171dbb250fdebafad46ed16d97065369da40568ae948ef7117eee8536e94"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.5.2.tar.gz",
+        "has_sig": false,
+        "md5_digest": "7b26ef8148c330ab17796b4f297527c0",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 18935,
+        "upload_time": "2017-09-06T13:53:40",
+        "url": "https://files.pythonhosted.org/packages/c1/c8/d0c5ca3c8134cbc7c8e2a40a0f908b3aa0e76762b3a829ae6dbe26c1f2b2/pluggy-0.5.2.tar.gz"
+      }
+    ],
+    "0.6.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "78ae3816cb3f1b843de3af66c0f36a8b",
+          "sha256": "d345c8fe681115900d6da8d048ba67c25df42973bda370783cd58826442dcd7c"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.6.0-py2-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "78ae3816cb3f1b843de3af66c0f36a8b",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2",
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+        "size": 11953,
+        "upload_time": "2018-04-15T17:55:28",
+        "url": "https://files.pythonhosted.org/packages/82/05/43e3947125a2137cba4746135c75934ceed1863f27e050fc560052104a71/pluggy-0.6.0-py2-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "295745cab038ef139c75aa2cdb79a5b0",
+          "sha256": "e160a7fcf25762bb60efc7e171d4497ff1d8d2d75a3d0df7a21b76821ecbf5c5"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.6.0-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "295745cab038ef139c75aa2cdb79a5b0",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+        "size": 13723,
+        "upload_time": "2018-04-15T17:55:22",
+        "url": "https://files.pythonhosted.org/packages/ba/65/ded3bc40bbf8d887f262f150fbe1ae6637765b5c9534bd55690ed2c0b0f7/pluggy-0.6.0-py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "ffdde7c3a5ba9a440404570366ffb6d5",
+          "sha256": "7f8ae7f5bdf75671a718d2daf0a64b7885f74510bcd98b1a0bb420eb9a9d0cff"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.6.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "ffdde7c3a5ba9a440404570366ffb6d5",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+        "size": 19678,
+        "upload_time": "2017-11-24T16:33:11",
+        "url": "https://files.pythonhosted.org/packages/11/bf/cbeb8cdfaffa9f2ea154a30ae31a9d04a1209312e2919138b4171a1f8199/pluggy-0.6.0.tar.gz"
+      }
+    ],
+    "0.7.1": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "c5da30ac45fea1c455d2a7424fd53ae9",
+          "sha256": "6e3836e39f4d36ae72840833db137f7b7d35105079aee6ec4a62d9f80d594dd1"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.7.1-py2.py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "c5da30ac45fea1c455d2a7424fd53ae9",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2.py3",
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+        "size": 14062,
+        "upload_time": "2018-07-28T22:45:29",
+        "url": "https://files.pythonhosted.org/packages/f5/f1/5a93c118663896d83f7bcbfb7f657ce1d0c0d617e6b4a443a53abcc658ca/pluggy-0.7.1-py2.py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "cd5cc1003143f86dd6e2a865a20f8837",
+          "sha256": "95eb8364a4708392bae89035f45341871286a333f749c3141c20573d2b3876e1"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.7.1.tar.gz",
+        "has_sig": false,
+        "md5_digest": "cd5cc1003143f86dd6e2a865a20f8837",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+        "size": 47784,
+        "upload_time": "2018-07-28T22:45:30",
+        "url": "https://files.pythonhosted.org/packages/a1/83/ef7d976c12d67a5c7a5bc2a47f0501c926cabae9d9fcfdc26d72abc9ba15/pluggy-0.7.1.tar.gz"
+      }
+    ],
+    "0.8.0": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "15ae1293ef2c5bfda2bda23985c58b29",
+          "sha256": "bde19360a8ec4dfd8a20dcb811780a30998101f078fc7ded6162f0076f50508f"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.8.0-py2.py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "15ae1293ef2c5bfda2bda23985c58b29",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2.py3",
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+        "size": 17211,
+        "upload_time": "2018-10-16T11:12:38",
+        "url": "https://files.pythonhosted.org/packages/1c/e7/017c262070af41fe251401cb0d0e1b7c38f656da634cd0c15604f1f30864/pluggy-0.8.0-py2.py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "12ddd25322d909a286c4018d18fddc79",
+          "sha256": "447ba94990e8014ee25ec853339faf7b0fc8050cdc3289d4d71f7f410fb90095"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.8.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "12ddd25322d909a286c4018d18fddc79",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+        "size": 53259,
+        "upload_time": "2018-10-16T11:12:39",
+        "url": "https://files.pythonhosted.org/packages/65/25/81d0de17cd00f8ca994a4e74e3c4baf7cd25072c0b831dad5c7d9d6138f8/pluggy-0.8.0.tar.gz"
+      }
+    ],
+    "0.8.1": [
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "2b2a30da7a38faa1c25b6efe87ccda6d",
+          "sha256": "980710797ff6a041e9a73a5787804f848996ecaa6f8a1b1e08224a5894f2074a"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.8.1-py2.py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "2b2a30da7a38faa1c25b6efe87ccda6d",
+        "packagetype": "bdist_wheel",
+        "python_version": "py2.py3",
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+        "size": 17274,
+        "upload_time": "2019-01-09T20:53:27",
+        "url": "https://files.pythonhosted.org/packages/2d/60/f58d9e8197f911f9405bf7e02227b43a2acc2c2f1a8cbb1be5ecf6bfd0b8/pluggy-0.8.1-py2.py3-none-any.whl"
+      },
+      {
+        "comment_text": "",
+        "digests": {
+          "md5": "214ecd30495094ec2f1859adf03a510b",
+          "sha256": "8ddc32f03971bfdf900a81961a48ccf2fb677cf7715108f85295c67405798616"
+        },
+        "downloads": -1,
+        "filename": "pluggy-0.8.1.tar.gz",
+        "has_sig": false,
+        "md5_digest": "214ecd30495094ec2f1859adf03a510b",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+        "size": 53375,
+        "upload_time": "2019-01-09T20:53:29",
+        "url": "https://files.pythonhosted.org/packages/38/e1/83b10c17688af7b2998fa5342fec58ecbd2a5a7499f31e606ae6640b71ac/pluggy-0.8.1.tar.gz"
+      }
+    ]
+  },
+  "urls": [
+    {
+      "comment_text": "",
+      "digests": {
+        "md5": "2b2a30da7a38faa1c25b6efe87ccda6d",
+        "sha256": "980710797ff6a041e9a73a5787804f848996ecaa6f8a1b1e08224a5894f2074a"
+      },
+      "downloads": -1,
+      "filename": "pluggy-0.8.1-py2.py3-none-any.whl",
+      "has_sig": false,
+      "md5_digest": "2b2a30da7a38faa1c25b6efe87ccda6d",
+      "packagetype": "bdist_wheel",
+      "python_version": "py2.py3",
+      "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+      "size": 17274,
+      "upload_time": "2019-01-09T20:53:27",
+      "url": "https://files.pythonhosted.org/packages/2d/60/f58d9e8197f911f9405bf7e02227b43a2acc2c2f1a8cbb1be5ecf6bfd0b8/pluggy-0.8.1-py2.py3-none-any.whl"
+    },
+    {
+      "comment_text": "",
+      "digests": {
+        "md5": "214ecd30495094ec2f1859adf03a510b",
+        "sha256": "8ddc32f03971bfdf900a81961a48ccf2fb677cf7715108f85295c67405798616"
+      },
+      "downloads": -1,
+      "filename": "pluggy-0.8.1.tar.gz",
+      "has_sig": false,
+      "md5_digest": "214ecd30495094ec2f1859adf03a510b",
+      "packagetype": "sdist",
+      "python_version": "source",
+      "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
+      "size": 53375,
+      "upload_time": "2019-01-09T20:53:29",
+      "url": "https://files.pythonhosted.org/packages/38/e1/83b10c17688af7b2998fa5342fec58ecbd2a5a7499f31e606ae6640b71ac/pluggy-0.8.1.tar.gz"
+    }
+  ]
+}
