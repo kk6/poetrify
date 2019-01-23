@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import pytest
+import requests
 import responses
 from poetrify.files import Pipfile
 from poetrify.files import RequirementsTxt
@@ -49,6 +50,20 @@ def test_requires(fixture, pypi_json):
     assert requires.path.name == "requirements.txt"
     assert requires.packages == ["django", "pytest"]
     assert requires.dev_packages == []
+
+
+@responses.activate
+def test_requires_with_non_exists_package(fixture, pypi_json):
+    responses.add(
+        responses.GET,
+        f"https://pypi.org/pypi/djangodjango/json",
+        body="",
+        status=404,
+        content_type="text/html",
+    )
+    requires = RequirementsTxt(fixture.with_name("non_exists_requirements.txt"))
+    with pytest.raises(requests.exceptions.HTTPError):
+        requires.packages
 
 
 def test_requirements_if_not_exists():
