@@ -2,44 +2,36 @@ import shlex
 
 import licensename
 
-from .files import get_requires
 from .files import Pipfile
 from .files import RequirementsTxt
 
 
-def generate_init_cmd(src):
+def build_poetry_init_command(src):
     """
-    Generate command string to pass to poetry
+    Make a command for `poetry init`
 
-    :param str src: Source file name.
+    :param pathlib.Path src: Source file's Path object.
     :return: Generated command for 'poetry init' .
     :rtype: str
 
     """
-    if src == "Pipfile":
+    if src.name == "Pipfile":
         src = Pipfile(src)
     else:
         src = RequirementsTxt(src)
-    try:
-        packages, dev_packages = get_requires(src)
-    except FileNotFoundError:
-        return
 
     cmd = ["poetry", "init"]
 
-    for package in packages:
+    for package in src.packages:
         cmd.append(f"--dependency={shlex.quote(package)}")
 
-    for package in dev_packages:
+    for package in src.dev_packages:
         cmd.append(f"--dev-dependency={shlex.quote(package)}")
 
     try:
-        license_name = licensename.from_file("LICENSE")
+        license_name = licensename.from_file("LICENSE") or ""
     except FileNotFoundError:
         license_name = ""
-    else:
-        if license_name is None:
-            license_name = ""
     if license_name:
         cmd.append(f"--license={license_name}")
 

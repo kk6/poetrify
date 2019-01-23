@@ -8,7 +8,7 @@ scrapy = "*"
 "beautifulsoup4" = "*"
 
 [dev-packages]
-"pytest" = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.7"

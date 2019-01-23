@@ -1,65 +1,52 @@
 from dataclasses import dataclass
 from dataclasses import field
-from functools import singledispatch
+from pathlib import Path
 
-import requests
 import tomlkit
+
+from .http import fetch_package_json
 
 
 @dataclass
 class Pipfile:
-    src: str
+    path: Path
     body: dict = field(init=False)
 
     def __post_init__(self):
-        with open(self.src) as f:
+        with open(self.path) as f:
             self.body = tomlkit.parse(f.read())
 
     @property
     def packages(self):
-        if self.body:
+        try:
             return list(self.body["packages"].keys())
+        except tomlkit.exceptions.NonExistentKey:
+            return []
 
     @property
     def dev_packages(self):
-        if self.body:
+        try:
             return list(self.body["dev-packages"].keys())
-
-
-def find_descendant_packages(package_names):
-    requires = []
-    for name in package_names:
-        r = requests.get(f"https://pypi.org/pypi/{name}/json")
-        r.raise_for_status()
-        j = r.json()
-        requires_dist = j["info"].get("requires_dist")
-        if requires_dist:
-            for dist in requires_dist:
-                if "extra ==" in dist:
-                    continue
-                dist_name = dist.split(" ")[0]
-                requires.append(dist_name)
-    package_name_set = {p.lower() for p in package_names}
-    requires_set = {r.lower() for r in requires}
-    return sorted(package_name_set - requires_set)
+        except tomlkit.exceptions.NonExistentKey:
+            return []
 
 
 @dataclass
 class RequirementsTxt:
-    src: str
+    path: Path
     body: list = field(init=False)
     _decent_packages: list = None
 
     def __post_init__(self):
-        with open(self.src) as f:
+        with open(self.path) as f:
             self.body = [l.strip() for l in f.readlines()]
 
     @property
-    def packages(self):
+    def all_packages(self):
         packages = []
         for line in self.body:
 
-            if "egg=" in line:
+            if line.startswith("#") or "egg=" in line:
                 continue
 
             if "==" in line:
@@ -69,22 +56,39 @@ class RequirementsTxt:
             packages.append(package)
         return packages
 
-    def get_decent_packages(self):
-        if not self._decent_packages:
-            self._decent_packages = find_descendant_packages(self.packages)
+    @property
+    def packages(self):
+        if self._decent_packages is None:
+            self._decent_packages = find_descendant_packages(self.all_packages)
         return self._decent_packages
 
-
-@singledispatch
-def get_requires(src):
-    raise TypeError(f"Unsupported type: {src}")
-
-
-@get_requires.register(Pipfile)
-def get_requires_from_pipfile(src):
-    return src.packages, src.dev_packages
+    @property
+    def dev_packages(self):
+        return []
 
 
-@get_requires.register(RequirementsTxt)
-def get_requires_from_requirements_txt(src):
-    return src.get_decent_packages(), []
+def find_descendant_packages(package_names):
+    def get_requires_dist(json_):
+        parents = []
+        requires_dist = json_["info"].get("requires_dist")
+
+        if not requires_dist:
+            return parents
+
+        for dist in requires_dist:
+            if "extra ==" in dist:
+                continue
+            dist_name = dist.split(" ")[0]
+            parents.append(dist_name)
+
+        return parents
+
+    all_requires = []
+    for name in package_names:
+        j = fetch_package_json(name)
+        requires = get_requires_dist(j)
+        all_requires.extend(requires)
+
+    package_name_set = {p.lower() for p in package_names}
+    requires_set = {r.lower() for r in all_requires}
+    return sorted(package_name_set - requires_set)
