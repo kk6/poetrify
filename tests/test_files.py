@@ -69,3 +69,18 @@ def test_requires_with_non_exists_package(fixture, pypi_json):
 def test_requirements_if_not_exists():
     with pytest.raises(FileNotFoundError):
         RequirementsTxt(Path("./bar"))
+
+
+def test_various_symbols_with_versions(fixture):
+    pipfile = RequirementsTxt(fixture.with_name("various_symbols.txt"))
+    assert pipfile.all_packages == [
+        "nose",
+        "nose-cov",
+        "beautifulsoup4",
+        "docopt",
+        "keyring",
+        "coverage",
+        "mopidy-dirble",
+        "rejected",
+        "green",
+    ]
