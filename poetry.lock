@@ -335,7 +335,7 @@ description = "Building newsfiles for your project."
 name = "towncrier"
 optional = false
 python-versions = "*"
-version = "18.6.0"
+version = "19.2.0"
 
 [package.dependencies]
 Click = "*"
@@ -379,7 +379,7 @@ python-versions = ">=2.7"
 version = "0.3.3"
 
 [metadata]
-content-hash = "889b131d5601df2f64c92090a3557d8e3ce1be4b21a004cbc6e571c662b6f434"
+content-hash = "eaeff73dc3495a42c26ea17195a11c3169bbdfe5fdbd4a449312fac728a33e68"
 python-versions = "^3.7"
 
 [metadata.hashes]
@@ -416,7 +416,7 @@ responses = ["502d9c0c8008439cfcdef7e251f507fcfdd503b56e8c0c87c3c3e3393953f790",
 six = ["3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c", "d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"]
 toml = ["229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c", "235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e", "f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"]
 tomlkit = ["d6506342615d051bc961f70bfcfa3d29b6616cc08a3ddfd4bc24196f16fd4ec2", "f077456d35303e7908cc233b340f71e0bec96f63429997f38ca9272b7d64029e"]
-towncrier = ["3c0da1de042861df9030c0608d346d55cabe14cfa7cf04045f22b0af63eb8aa7", "cfde66ada782db9269407eaefb38562d3d2a4bc4d7647c0b2197ed184b869aae"]
+towncrier = ["48251a1ae66d2cf7e6fa5552016386831b3e12bb3b2d08eb70374508c17a8196", "de19da8b8cb44f18ea7ed3a3823087d2af8fcf497151bb9fd1e1b092ff56ed8d"]
 unidecode = ["092cdf7ad9d1052c50313426a625b717dab52f7ac58f859e09ea020953b1ad8f", "8b85354be8fd0c0e10adbf0675f6dc2310e56fda43fa8fe049123b6c475e52fb"]
 urllib3 = ["61bf29cada3fc2fbefad4fdf059ea4bd1b4a86d2b6d15e1c7c0b582b9752fe39", "de9529817c93f27c8ccbfead6985011db27bd0ddfcdb2d86f3f663385c6a9c22"]
 virtualenv = ["34b9ae3742abed2f95d3970acf4d80533261d6061b51160b197f84e5b4c98b4c", "fa736831a7b18bd2bfeef746beb622a92509e9733d645952da136b0639cd40cd"]
