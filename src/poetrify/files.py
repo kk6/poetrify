@@ -43,18 +43,7 @@ class RequirementsTxt:
 
     @property
     def all_packages(self):
-        packages = []
-        for line in self.body:
-
-            if line.startswith("#") or "egg=" in line:
-                continue
-
-            if "==" in line:
-                package = line.split("==")[0]
-            else:
-                package = line
-            packages.append(package)
-        return packages
+        return find_packages(self.body)
 
     @property
     def packages(self):
@@ -65,6 +54,35 @@ class RequirementsTxt:
     @property
     def dev_packages(self):
         return []
+
+
+def find_packages(requirements_txt_lines):
+    version_specifiers = ["~=", "==", "!=", "<=", ">=", ">", "<", "==="]
+    packages = []
+    for line in requirements_txt_lines:
+
+        if line.startswith("#"):
+            continue
+
+        if "egg=" in line:
+            continue
+
+        if "http" in line:
+            continue
+
+        if "-r" in line:
+            continue
+
+        if ".whl" in line:
+            continue
+
+        package = line
+        for s in version_specifiers:
+            if s in line:
+                package = line.split(s)[0]
+                break
+        packages.append(package.lower().strip())
+    return packages
 
 
 def find_descendant_packages(package_names):
