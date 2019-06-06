@@ -38,8 +38,8 @@ category = "dev"
 description = "Validate configuration and produce human readable error messages."
 name = "cfgv"
 optional = false
-python-versions = "*"
-version = "1.4.0"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "2.0.0"
 
 [package.dependencies]
 six = "*"
@@ -224,11 +224,11 @@ description = "A framework for managing and maintaining multi-language pre-commi
 name = "pre-commit"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.15.2"
+version = "1.17.0"
 
 [package.dependencies]
 "aspy.yaml" = "*"
-cfgv = ">=1.4.0"
+cfgv = ">=2.0.0"
 identify = ">=1.0.0"
 importlib-metadata = "*"
 nodeenv = ">=0.11.1"
@@ -412,7 +412,7 @@ python-versions = ">=2.7"
 version = "0.5.1"
 
 [metadata]
-content-hash = "7b48840711756fff2872ecb630e50add8e6f14fc35a10d3270a435ff60052fa2"
+content-hash = "6a3e8f64638954473550e20fd25b445278fd72ce41dad911d4fceade120ec6d5"
 python-versions = "^3.7"
 
 [metadata.hashes]
@@ -420,7 +420,7 @@ python-versions = "^3.7"
 atomicwrites = ["0312ad34fcad8fac3704d441f7b317e50af620823353ec657a53e981f92920c0", "ec9ae8adaae229e4f8446952d204a3e4b5fdd2d099f9be3aaf556120135fb3ee"]
 attrs = ["10cbf6e27dbce8c30807caf056c8eb50917e0eaafe86347671b57254006c3e69", "ca4be454458f9dec299268d472aaa5a11f67a4ff70093396e1ceae9c76cf4bbb"]
 certifi = ["47f9c83ef4c0c621eaef743f133f09fa8a74a9b75f037e8624f83bd1b6626cb7", "993f830721089fef441cdfeb4b2c8c9df86f0c63239f06bd025a76a7daddb033"]
-cfgv = ["39d9055c47e3932908fe25abd5807e21dc002630db01c7a5f05738d027e2b706", "41d22dd864c474f919ecb88900000d2410d640315f75bdb79b3abf9347089641"]
+cfgv = ["32edbe09de6f4521224b87822103a8c16a614d31a894735f7a5b3bcf0eb3c37e", "3bd31385cd2bebddbba8012200aaf15aa208539f1b33973759b4d02fc2148da5"]
 chardet = ["84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae", "fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691"]
 cleo = ["7a5000de616de42fd78f968192651b9174bf333a9079fc9d68ccc672ddfd3624", "a39fa806fd3f64ff0ae4e3a55bb80c8ce60ca73634e13619731d63a04a63be69"]
 click = ["2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13", "5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"]
@@ -439,7 +439,7 @@ nodeenv = ["ad8259494cf1c9034539f6cced78a1da4840a4b157e23640bc4a0c0546b0cb7a"]
 packaging = ["0c98a5d0be38ed775798ece1b9727178c4469d9c3b4ada66e8e6b7849f8732af", "9e1cbf8c12b1f1ce0bb5344b8d7ecf66a6f8a6e91bcb0c84593ed6d3ab5c4ab3"]
 pastel = ["3108af417ec0fa6d0a620e676ec4f02c839ca13e10611586e5d2174b46aa0bc3", "d1fee8079534f99f1805a044fef946d23eee6d6a7cd34292c30e6c16be9a80b9"]
 pluggy = ["0825a152ac059776623854c1543d65a4ad408eb3d33ee114dff91e57ec6ae6fc", "b9817417e95936bf75d85d3f8767f7df6cdde751fc40aed3bb3074cbcb77757c"]
-pre-commit = ["2576a2776098f3902ef9540a84696e8e06bf18a337ce43a6a889e7fa5d26c4c5", "82f2f2d657d7f9280de9f927ae56886d60b9ef7f3714eae92d12713cd9cb9e11"]
+pre-commit = ["92e406d556190503630fd801958379861c94884693a032ba66629d0351fdccd4", "cccc39051bc2457b0c0f7152a411f8e05e3ba2fe1a5613e4ee0833c1c1985ce3"]
 py = ["bf92637198836372b520efcba9e020c330123be8ce527e535d185ed4b6f45694", "e76826342cefe3c3d5f7e8ee4316b80d1dd8a300781612ddbc765c17ba25a6c6"]
 pylev = ["063910098161199b81e453025653ec53556c1be7165a9b7c50be2f4d57eae1c3", "1d29a87beb45ebe1e821e7a3b10da2b6b2f4c79b43f482c2df1a1f748a6e114e"]
 pyparsing = ["1873c03321fc118f4e9746baf201ff990ceb915f433f23b395f5580d1840cb2a", "9b6323ef4ab914af344ba97510e966d64ba91055d6b9afa6b30799340e89cc03"]

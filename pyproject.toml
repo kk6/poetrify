@@ -26,7 +26,7 @@ requests = "^2.21"
 
 [tool.poetry.dev-dependencies]
 pytest = "^4.6"
-pre-commit = "^1.15"
+pre-commit = "^1.17"
 towncrier = "^19.2"
 pytest-cov = "^2.7"
 responses = "^0.10.6"
