@@ -25,6 +25,7 @@ def test_foo(command_tester_factory):
 
         poetry init --dependency=scrapy --dependency=beautifulsoup4 --dev-dependency=pytest --license=MIT
 
+
         Execute the above command. Also, the following output is due to Poetry.
         """
     )
