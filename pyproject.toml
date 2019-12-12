@@ -29,7 +29,7 @@ pytest = "^4.6"
 pre-commit = "^1.19"
 towncrier = "^19.2"
 pytest-cov = "^2.7"
-responses = "^0.10.6"
+responses = "^0.10.8"
 
 [tool.poetry.scripts]
 poetrify = "poetrify.cli:application.run"
