@@ -39,7 +39,7 @@ class RequirementsTxt:
 
     def __post_init__(self):
         with open(self.path) as f:
-            self.body = [l.strip() for l in f.readlines()]
+            self.body = [l.strip() for l in f.read().splitlines() if l.strip()]
 
     @property
     def all_packages(self):

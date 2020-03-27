@@ -5,6 +5,9 @@ Django==2.1.5
 more-itertools==5.0.0
 pluggy==0.8.1
 py==1.7.0
-pytest==4.1.1
+
+    
+# The lines above are intentionally empty or only spaces for testing purpose
+pytest==4.1.1 
 pytz==2018.9
 six==1.12.0
