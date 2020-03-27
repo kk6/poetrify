@@ -64,6 +64,9 @@ def find_packages(requirements_txt_lines):
         if line.startswith("#"):
             continue
 
+        if "#" in line:
+            line = line.split("#")[0]
+
         if "egg=" in line:
             continue
 
