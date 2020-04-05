@@ -69,4 +69,4 @@ class GenerateCommand(Command):
                 os.remove(lock_file)
                 self.info("Pipfile.lock deleted!")
             except FileNotFoundError:
-                self.line_error("Pipfile.lock is not exists.", style="error")
+                self.line_error("Pipfile.lock not found.", style="error")
