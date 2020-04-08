@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "poetrify"
-version = "0.4.0"
+version = "0.4.1"
 description = "Pipfile to pyproject.toml for Poetry"
 readme = "README.md"
 authors = ["kk6 <hiro.ashiya@gmail.com>"]

@@ -1,3 +1,17 @@
+0.4.1 (2020-04-08)
+==================
+
+Bugfixes
+--------
+
+- Allow blank lines on requirements.txt`#78 <https://github.com/kk6/poetrify/issues/78>`_
+
+Misc
+----
+
+- `#79 <https://github.com/kk6/poetrify/issues/79>`_
+
+
 0.4.0 (2019-05-20)
 ==================
 
