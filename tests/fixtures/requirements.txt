@@ -4,7 +4,10 @@ attrs==18.2.0
 Django==2.1.5
 more-itertools==5.0.0
 pluggy==0.8.1
-py==1.7.0
-pytest==4.1.1
+py==1.7.0 
+
+    
+# The lines above are intentionally empty or only spaces for testing purpose
+pytest==4.1.1 # https://github.com/pytest-dev/pytest (inline comment test)
 pytz==2018.9
 six==1.12.0
