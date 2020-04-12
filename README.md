@@ -121,7 +121,7 @@ urllib3==1.24.1
 virtualenv==16.2.0
 zipp==0.3.3
 
-$ poetry run poetrify generate -d -s requirements.txt
+$ poetrify generate -d -s requirements.txt
 Generated init command:
 
 poetry init --dependency=cleo --dependency=licensename --dependency=pre-commit --dependency=pytest-cov --dependency=requests --dependency=tomlkit --dependency=towncrier --license=MIT
