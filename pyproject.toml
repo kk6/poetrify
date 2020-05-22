@@ -28,7 +28,7 @@ requests = "^2.21"
 pytest = "^5.4"
 pre-commit = "^2.4"
 towncrier = "^19.2"
-pytest-cov = "^2.8"
+pytest-cov = "^2.9"
 responses = "^0.10.14"
 
 [tool.poetry.scripts]
