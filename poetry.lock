@@ -75,6 +75,17 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
+name = "click-default-group"
+version = "1.2.2"
+description = "Extends click.Group to invoke a command without explicit subcommand name"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+click = "*"
+
+[[package]]
 name = "clikit"
 version = "0.6.0"
 description = "CliKit is a group of utilities to build beautiful and testable command line interfaces."
@@ -412,17 +423,21 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "towncrier"
-version = "19.2.0"
+version = "21.3.0"
 description = "Building newsfiles for your project."
 category = "dev"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-Click = "*"
+click = "*"
+click-default-group = "*"
 incremental = "*"
 jinja2 = "*"
 toml = "*"
+
+[package.extras]
+dev = ["packaging"]
 
 [[package]]
 name = "unidecode"
@@ -481,7 +496,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "801abb041e4e38b49c72366d1405e3b37d84a332422616fbc23569af922464b1"
+content-hash = "259e6c481a0f15534e14a114093db1c708d28cd63ec0636a7771a3d5b93ecf29"
 
 [metadata.files]
 appdirs = [
@@ -515,6 +530,9 @@ cleo = [
 click = [
     {file = "Click-7.0-py2.py3-none-any.whl", hash = "sha256:2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13"},
     {file = "Click-7.0.tar.gz", hash = "sha256:5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"},
+]
+click-default-group = [
+    {file = "click-default-group-1.2.2.tar.gz", hash = "sha256:d9560e8e8dfa44b3562fbc9425042a0fd6d21956fcc2db0077f63f34253ab904"},
 ]
 clikit = [
     {file = "clikit-0.6.0-py2.py3-none-any.whl", hash = "sha256:a666d0727b1ddbfdef9ed2bfbda00ad6f1dd1fa19255ff79b8ca05df77809b7b"},
@@ -747,8 +765,8 @@ tomlkit = [
     {file = "tomlkit-0.7.0.tar.gz", hash = "sha256:ac57f29693fab3e309ea789252fcce3061e19110085aa31af5446ca749325618"},
 ]
 towncrier = [
-    {file = "towncrier-19.2.0-py2.py3-none-any.whl", hash = "sha256:de19da8b8cb44f18ea7ed3a3823087d2af8fcf497151bb9fd1e1b092ff56ed8d"},
-    {file = "towncrier-19.2.0.tar.gz", hash = "sha256:48251a1ae66d2cf7e6fa5552016386831b3e12bb3b2d08eb70374508c17a8196"},
+    {file = "towncrier-21.3.0-py2.py3-none-any.whl", hash = "sha256:e6ccec65418bbcb8de5c908003e130e37fe0e9d6396cb77c1338241071edc082"},
+    {file = "towncrier-21.3.0.tar.gz", hash = "sha256:6eed0bc924d72c98c000cb8a64de3bd566e5cb0d11032b73fcccf8a8f956ddfe"},
 ]
 unidecode = [
     {file = "Unidecode-1.1.1-py2.py3-none-any.whl", hash = "sha256:1d7a042116536098d05d599ef2b8616759f02985c85b4fef50c78a5aaf10822a"},
