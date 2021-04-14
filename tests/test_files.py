@@ -38,17 +38,17 @@ def test_empty_pipfile(fixture):
 @responses.activate
 def test_requires(fixture, pypi_json):
     requires = RequirementsTxt(fixture.with_name("requirements.txt"))
-    for name in requires.all_packages:
-        with open(pypi_json.with_name(f"{name}.json")) as f:
+    for p in requires.all_packages:
+        with open(pypi_json.with_name(f"{p.name}.json")) as f:
             responses.add(
                 responses.GET,
-                f"https://pypi.org/pypi/{name}/json",
+                f"https://pypi.org/pypi/{p.name}/json",
                 body=f.read(),
                 status=200,
                 content_type="application/json",
             )
     assert requires.path.name == "requirements.txt"
-    assert requires.packages == ["django", "pytest"]
+    assert requires.packages == ["adb-shell", "django", "pytest"]
     assert requires.dev_packages == []
 
 
@@ -73,7 +73,7 @@ def test_requirements_if_not_exists():
 
 def test_various_symbols_with_versions(fixture):
     pipfile = RequirementsTxt(fixture.with_name("various_symbols.txt"))
-    assert pipfile.all_packages == [
+    assert [str(p) for p in pipfile.all_packages] == [
         "nose",
         "nose-cov",
         "beautifulsoup4",

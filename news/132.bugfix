@@ -1,0 +1,1 @@
+Fix #122 Fails to parse dependencies with extras_require like "adb-shell[async]"
