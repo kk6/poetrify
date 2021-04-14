@@ -1,3 +1,12 @@
+0.4.2 (2021-04-14)
+==================
+
+Bugfixes
+--------
+
+- Fix #122 Fails to parse dependencies with extras_require like "adb-shell[async]"`#132 <https://github.com/kk6/poetrify/issues/132>`_
+
+
 0.4.1 (2020-04-08)
 ==================
 
