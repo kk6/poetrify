@@ -5,6 +5,7 @@ from pathlib import Path
 import tomlkit
 
 from .http import fetch_package_json
+from .packages import setup_package
 
 
 @dataclass
@@ -70,10 +71,13 @@ def find_packages(requirements_txt_lines):
         if "egg=" in line:
             continue
 
-        if "http" in line:
+        if "http://" in line:
             continue
 
-        if "-r" in line:
+        if line.startswith("-r"):
+            continue
+
+        if line.startswith("-c"):
             continue
 
         if ".whl" in line:
@@ -84,11 +88,13 @@ def find_packages(requirements_txt_lines):
             if s in line:
                 package = line.split(s)[0]
                 break
-        packages.append(package.lower().strip())
+
+        package = setup_package(package.lower().strip())
+        packages.append(package)
     return packages
 
 
-def find_descendant_packages(package_names):
+def find_descendant_packages(packages):
     def get_requires_dist(json_):
         parents = []
         requires_dist = json_["info"].get("requires_dist")
@@ -105,11 +111,11 @@ def find_descendant_packages(package_names):
         return parents
 
     all_requires = []
-    for name in package_names:
-        j = fetch_package_json(name)
+    for package in packages:
+        j = fetch_package_json(package.name)
         requires = get_requires_dist(j)
         all_requires.extend(requires)
 
-    package_name_set = {p.lower() for p in package_names}
+    package_name_set = {p.name.lower() for p in packages}
     requires_set = {r.lower() for r in all_requires}
     return sorted(package_name_set - requires_set)
