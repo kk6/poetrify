@@ -1,0 +1,18 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "20:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: responses
+    versions:
+    - 0.12.1
+    - 0.13.1
+  - dependency-name: pre-commit
+    versions:
+    - 2.10.0
+    - 2.10.1
+    - 2.11.0
