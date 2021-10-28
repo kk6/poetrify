@@ -383,7 +383,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
 [[package]]
 name = "responses"
-version = "0.13.2"
+version = "0.15.0"
 description = "A utility library for mocking out the `requests` Python library."
 category = "dev"
 optional = false
@@ -395,7 +395,7 @@ six = "*"
 urllib3 = ">=1.25.10"
 
 [package.extras]
-tests = ["coverage (>=3.7.1,<6.0.0)", "pytest-cov", "pytest-localserver", "flake8", "pytest (>=4.6,<5.0)", "pytest (>=4.6)", "mypy"]
+tests = ["coverage (>=3.7.1,<6.0.0)", "pytest-cov", "pytest-localserver", "flake8", "types-mock", "types-requests", "types-six", "pytest (>=4.6,<5.0)", "pytest (>=4.6)", "mypy"]
 
 [[package]]
 name = "six"
@@ -496,7 +496,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "029e391a7f17a36e16d86433b044fd534c2ad9649c335c9c4911f12dff39315e"
+content-hash = "928ef90f6e3820cf0efb10c1979ea673b907668c35644e688a21ebd33353eb87"
 
 [metadata.files]
 appdirs = [
@@ -750,8 +750,8 @@ requests = [
     {file = "requests-2.25.1.tar.gz", hash = "sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"},
 ]
 responses = [
-    {file = "responses-0.13.2-py2.py3-none-any.whl", hash = "sha256:75529f9bea08276cea43545dcb6129f137c299d6a12269485a753785c869e0e2"},
-    {file = "responses-0.13.2.tar.gz", hash = "sha256:0f0ab4717728d33dae8e66deea61eecc1e38f0398e35249e3963ff74cfc8d0d8"},
+    {file = "responses-0.15.0-py2.py3-none-any.whl", hash = "sha256:5955ad3468fe8eb5fb736cdab4943457b7768f8670fa3624b4e26ff52dfe20c0"},
+    {file = "responses-0.15.0.tar.gz", hash = "sha256:866757987d1962aa908d9c8b3185739faefd72a359e95459de0c2e4e5369c9b2"},
 ]
 six = [
     {file = "six-1.14.0-py2.py3-none-any.whl", hash = "sha256:8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"},
