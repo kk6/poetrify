@@ -25,7 +25,7 @@ licensename = "^0.4.2"
 requests = "^2.21"
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2"
+pytest = "^7.0"
 pre-commit = "^2.12"
 towncrier = "^21.3"
 pytest-cov = "^2.11"
